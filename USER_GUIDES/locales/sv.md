@@ -1,22 +1,37 @@
 # CLARYEL RemoteOps — enkel guide
 
-RemoteOps hjälper dig att hantera din egen Linux- eller macOS-dator utan att memorera administrationskommandon.
+RemoteOps är ett kostnadsfritt projekt med öppen källkod för att hantera en Windows-, Linux- eller macOS-dator genom tal eller text i en AI-chatt.
 
-## Fyra steg
+## Vad du kan göra
 
-1. **Anslut** ett privat konfigurationsarkiv.
-2. **Beskriv** önskat resultat med enkla ord.
-3. **Godkänn** planen först efter kontroll av påverkan, risk, säkerhetskopia och återställning.
-4. **Verifiera** systemets hälsa. En misslyckad kontroll måste återställa det senaste fungerande läget.
+- installera, uppdatera eller ta bort program;
+- konfigurera godkända datorinställningar;
+- kontrollera datorns och systemets tillstånd;
+- reparera problem och återställa när verifieringen misslyckas.
 
-## Håll privat
+## Enkel användning
 
-Lägg aldrig lösenord, token, privata nycklar, återställningskoder, personliga filer, promptar, konversationer, loggar eller säkerhetskopior i det offentliga arkivet. Datorspecifik konfiguration hör hemma i ditt privata arkiv; hemligheter stannar i skyddad lokal lagring.
+1. Öppna den AI-chatt du föredrar.
+2. Säg eller skriv vilket resultat du vill ha.
+3. Läs och godkänn den korta planen när den är tydlig.
+4. RemoteOps kör en registrerad åtgärd och kontrollerar resultatet eller återställer.
 
-## AI-status
+## Vad du behöver
 
-ChatGPT har testats internt i CLARYEL-flödet. Claude, Gemini, Perplexity och Grok är dokumenterade men inte testade med RemoteOps. GitHub-åtkomst i ChatGPT Free garanteras inte och skrivande kontroll marknadsförs inte som en allmän gratisfunktion.
+- **En AI-chatt.** ChatGPT är internt testat. Andra AI-chattar har dokumenterade vägar men är inte testade med RemoteOps.
+- **CLARYEL RemoteOps.** Säkerhetslagret är gratis och har öppen källkod.
+
+<details>
+<summary>Teknisk information</summary>
+
+Ett kostnadsfritt privat GitHub-arkiv kan lagra konfigurationshistorik och godkännanden. GitHub är en teknisk bakgrundsmekanism, inte användargränssnittet. Lagra aldrig lösenord, nycklar, personliga filer, samtal, loggar eller säkerhetskopior i Git.
+
+</details>
+
+## Plattformstatus
+
+Linux- och macOS-flödena är internt testade; stabila offentliga bevis krävs fortfarande. Windows-förberedelse och scheman stöds; den privilegierade Windows-adaptern och offentliga återställningsbevis förbereds.
 
 ## Säker regel
 
-Godkänn inte en föreslagen ändring som du inte förstår. Be om en enklare förklaring och en tydlig återställningsväg.
+Godkänn inte en ändring du inte förstår. Be om en enklare förklaring och en synlig återställningsväg.
