@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0",
+  "device": {
+    "id": "example-laptop-001",
+    "platform": "linux",
+    "profile": "personal-safe-defaults"
+  },
+  "policies": {
+    "approval": "risk-based",
+    "rollback": "required",
+    "maintenanceWindow": "Saturday 10:00-12:00 local time"
+  },
+  "services": [
+    {"id": "example-monitoring", "state": "enabled"}
+  ]
+}
