@@ -1,37 +1,50 @@
-# CLARYEL RemoteOps — panduan sederhana
+# CLARYEL RemoteOps — instalasi dan penyiapan privat
 
-RemoteOps adalah cara gratis dan sumber terbuka untuk mengelola komputer Windows, Linux, atau macOS dengan berbicara atau mengetik di chat AI.
+RemoteOps mengelola komputer Windows, Ubuntu/Linux, atau macOS milik Anda melalui chat AI yang Anda pilih.
 
-## Yang dapat Anda lakukan
+## 1. Instal
 
-- memasang, memperbarui, atau menghapus perangkat lunak;
-- mengonfigurasi pengaturan komputer yang disetujui;
-- memeriksa kesehatan komputer dan sistem;
-- memperbaiki masalah dan melakukan pemulihan jika verifikasi gagal.
+- [Installer Windows](../../installers/install-windows.ps1)
+- [Installer macOS](../../installers/install-macos.sh)
+- [Installer Ubuntu](../../installers/install-ubuntu.sh)
 
-## Penggunaan sederhana
+Jalankan berkas yang diunduh. RemoteOps dipasang di profil pengguna Anda, membuat ruang kerja lokal privat, dan tidak menonaktifkan keamanan sistem operasi.
 
-1. Buka chat AI yang Anda pilih.
-2. Ucapkan atau ketik hasil yang diinginkan.
-3. Baca dan setujui rencana singkat ketika sudah jelas.
-4. RemoteOps menjalankan tindakan terdaftar dan memverifikasi hasil atau melakukan pemulihan.
+## 2. Buat repositori pribadi berstatus Private
 
-## Yang Anda perlukan
+Pasang GitHub CLI, jalankan `gh auth login`, lalu jalankan perintah yang ditampilkan installer:
 
-- **Chat AI.** ChatGPT telah diuji secara internal. Chat AI lain memiliki jalur terdokumentasi tetapi belum diuji dengan RemoteOps.
-- **CLARYEL RemoteOps.** Lapisan keamanan gratis dan sumber terbuka.
+```text
+remoteops connect --path JALUR-PRIVAT-ANDA --create-private remoteops-komputer-saya
+```
 
-<details>
-<summary>Catatan teknis</summary>
+Repositori dibuat di akun GitHub Anda dengan visibilitas `Private`. RemoteOps tidak menjadikannya publik dan tidak menambahkan kolaborator.
 
-Repositori GitHub privat gratis dapat menyimpan riwayat konfigurasi dan persetujuan. GitHub adalah mekanisme teknis di belakang layar, bukan antarmuka pengguna. Jangan pernah menyimpan kata sandi, kunci, berkas pribadi, percakapan, log, atau cadangan di Git.
+Private berarti tersembunyi dari publik. Anda, orang atau aplikasi yang Anda izinkan secara tegas, dan GitHub sebagai operator layanan tetap dapat mengakses sesuai izin. Lindungi akun dengan passkey atau autentikasi dua faktor.
 
-</details>
+Jangan pernah menyimpan kata sandi, token, kunci privat, kode pemulihan, berkas pribadi, chat, log mentah, basis data, atau cadangan di Git.
 
-## Status platform
+## 3. Periksa privasi
 
-Alur Linux dan macOS telah diuji secara internal; bukti publik stabil masih diperlukan. Persiapan dan skema Windows didukung; adaptor Windows berhak istimewa dan bukti pemulihan publik sedang disiapkan.
+```text
+remoteops privacy-check --path JALUR-PRIVAT-ANDA
+```
 
-## Aturan aman
+Lanjutkan hanya bila hasil menunjukkan `"ok": true`, `"visibility": "PRIVATE"`, dan tidak ada temuan.
 
-Jangan setujui perubahan yang tidak Anda pahami. Minta penjelasan yang lebih sederhana dan jalur pemulihan yang terlihat.
+## 4. Hubungkan ChatGPT
+
+1. Buka **ChatGPT > Settings > Apps > GitHub**.
+2. Pilih **Only select repositories**.
+3. Pilih hanya `remoteops-komputer-saya`.
+4. Tinjau izin sebelum menyetujui.
+5. Tinjau **Settings > Data Controls > Improve the model for everyone**.
+6. Jangan pernah menempelkan rahasia atau berkas pribadi ke chat.
+
+Ketersediaan aplikasi GitHub dan kemampuan menulis bergantung pada paket dan mode ChatGPT. Koneksi baca-saja tidak dapat menerapkan perubahan.
+
+## Batas komunikasi
+
+RemoteOps menghubungi GitHub hanya saat Anda menghubungkan atau menyinkronkan repositori privat, ChatGPT hanya saat Anda memilih menggunakannya, dan sumber paket hanya untuk operasi perangkat lunak yang disetujui. Installer tidak menambahkan iklan atau analitik yang tidak terkait.
+
+Panduan lengkap: [repositori privat](../../docs/PRIVATE_REPOSITORY_SETUP.md), [ChatGPT](../../docs/CHATGPT_SETUP.md), [privasi dan jaringan](../../docs/PRIVACY_AND_NETWORK.md).
