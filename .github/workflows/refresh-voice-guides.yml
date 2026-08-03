@@ -1,0 +1,796 @@
+name: Refresh voice-first user guides
+
+on:
+  push:
+    branches: [agent/simplify-voice-first-onboarding]
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/simplify-voice-first-onboarding
+      - name: Replace all localized quick guides
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          guides = {
+          'en': '''# CLARYEL RemoteOps — simple guide
+
+RemoteOps is a free, open-source way to manage your Windows, Linux or macOS computer by speaking or typing to an AI chat.
+
+## What you can do
+
+- install, update or remove software;
+- configure approved computer settings;
+- check computer health and system state;
+- repair problems and use rollback when verification fails.
+
+## Simple use
+
+1. Open the AI chat you prefer.
+2. Say or type the result you want.
+3. Read and approve the short plan when it is clear.
+4. RemoteOps applies a registered action and verifies the result or uses rollback.
+
+## What you need
+
+- **An AI chat.** ChatGPT is internally tested. Other AI chats have documented paths but are not tested with RemoteOps.
+- **CLARYEL RemoteOps.** The safety layer is free and open source.
+
+<details>
+<summary>Technical note</summary>
+
+A free private GitHub repository can keep the configuration history and approvals. GitHub is a background technical mechanism, not the user interface. Never store passwords, keys, personal files, conversations, logs or backups in Git.
+
+</details>
+
+## Platform status
+
+Linux and macOS workflows are internally tested, with stable public evidence still pending. Windows onboarding and schemas are supported; the privileged Windows adapter and public rollback evidence are in preparation.
+
+## Safe rule
+
+Do not approve a change you do not understand. Ask for a simpler explanation and a visible recovery path.
+''',
+          'it': '''# CLARYEL RemoteOps — guida semplice
+
+RemoteOps è un modo gratuito e open source per gestire il tuo computer Windows, Linux o macOS parlando o scrivendo in una chat IA.
+
+## Cosa puoi fare
+
+- installare, aggiornare o rimuovere software;
+- configurare impostazioni approvate del computer;
+- controllare lo stato del computer e del sistema;
+- risolvere problemi e usare il ripristino se la verifica fallisce.
+
+## Uso semplice
+
+1. Apri la chat IA che preferisci.
+2. Dì o scrivi il risultato desiderato.
+3. Leggi e approva il breve piano quando è chiaro.
+4. RemoteOps applica un’azione registrata e verifica il risultato oppure esegue il ripristino.
+
+## Cosa serve
+
+- **Una chat IA.** ChatGPT è testato internamente. Le altre chat IA hanno percorsi documentati ma non sono testate con RemoteOps.
+- **CLARYEL RemoteOps.** Il livello di sicurezza è gratuito e open source.
+
+<details>
+<summary>Nota tecnica</summary>
+
+Un repository GitHub privato gratuito può conservare la cronologia della configurazione e le approvazioni. GitHub è un meccanismo tecnico in secondo piano, non l’interfaccia utente. Non salvare mai in Git password, chiavi, file personali, conversazioni, log o backup.
+
+</details>
+
+## Stato delle piattaforme
+
+I flussi Linux e macOS sono testati internamente; mancano ancora le prove pubbliche stabili. La preparazione e gli schemi Windows sono supportati; l’adattatore privilegiato Windows e le prove pubbliche di ripristino sono in preparazione.
+
+## Regola sicura
+
+Non approvare una modifica che non capisci. Chiedi una spiegazione più semplice e un percorso di recupero visibile.
+''',
+          'de': '''# CLARYEL RemoteOps — einfache Anleitung
+
+RemoteOps ist eine kostenlose Open-Source-Lösung, mit der Sie Ihren Windows-, Linux- oder macOS-Computer über einen KI-Chat per Sprache oder Text verwalten.
+
+## Was Sie tun können
+
+- Software installieren, aktualisieren oder entfernen;
+- genehmigte Computereinstellungen konfigurieren;
+- Computerzustand und Systemstatus prüfen;
+- Probleme beheben und bei fehlgeschlagener Prüfung zurücksetzen.
+
+## Einfache Verwendung
+
+1. Öffnen Sie den KI-Chat Ihrer Wahl.
+2. Sagen oder schreiben Sie das gewünschte Ergebnis.
+3. Lesen und genehmigen Sie den kurzen Plan, wenn er verständlich ist.
+4. RemoteOps führt eine registrierte Aktion aus und prüft das Ergebnis oder setzt zurück.
+
+## Was Sie benötigen
+
+- **Einen KI-Chat.** ChatGPT ist intern getestet. Andere KI-Chats haben dokumentierte Wege, sind aber nicht mit RemoteOps getestet.
+- **CLARYEL RemoteOps.** Die Sicherheitsschicht ist kostenlos und Open Source.
+
+<details>
+<summary>Technischer Hinweis</summary>
+
+Ein kostenloses privates GitHub-Repository kann Konfigurationsverlauf und Genehmigungen speichern. GitHub ist ein technischer Hintergrundmechanismus, nicht die Benutzeroberfläche. Speichern Sie niemals Passwörter, Schlüssel, persönliche Dateien, Gespräche, Protokolle oder Backups in Git.
+
+</details>
+
+## Plattformstatus
+
+Linux- und macOS-Abläufe sind intern getestet; stabile öffentliche Nachweise stehen noch aus. Windows-Einrichtung und Schemas werden unterstützt; der privilegierte Windows-Adapter und öffentliche Rücksetzungsnachweise werden vorbereitet.
+
+## Sicherheitsregel
+
+Genehmigen Sie keine Änderung, die Sie nicht verstehen. Fordern Sie eine einfachere Erklärung und einen sichtbaren Wiederherstellungsweg an.
+''',
+          'fr': '''# CLARYEL RemoteOps — guide simple
+
+RemoteOps est une solution gratuite et open source pour gérer votre ordinateur Windows, Linux ou macOS en parlant ou en écrivant dans un chat IA.
+
+## Ce que vous pouvez faire
+
+- installer, mettre à jour ou supprimer des logiciels ;
+- configurer des réglages approuvés ;
+- vérifier l’état de l’ordinateur et du système ;
+- réparer des problèmes et revenir en arrière si la vérification échoue.
+
+## Utilisation simple
+
+1. Ouvrez le chat IA de votre choix.
+2. Dites ou écrivez le résultat souhaité.
+3. Lisez et approuvez le plan court lorsqu’il est clair.
+4. RemoteOps applique une action enregistrée et vérifie le résultat ou effectue un retour arrière.
+
+## Ce qu’il faut
+
+- **Un chat IA.** ChatGPT est testé en interne. Les autres chats IA disposent de parcours documentés mais ne sont pas testés avec RemoteOps.
+- **CLARYEL RemoteOps.** La couche de sécurité est gratuite et open source.
+
+<details>
+<summary>Note technique</summary>
+
+Un dépôt GitHub privé gratuit peut conserver l’historique de configuration et les approbations. GitHub est un mécanisme technique en arrière-plan, pas l’interface utilisateur. Ne stockez jamais dans Git des mots de passe, clés, fichiers personnels, conversations, journaux ou sauvegardes.
+
+</details>
+
+## État des plateformes
+
+Les parcours Linux et macOS sont testés en interne ; les preuves publiques stables restent à publier. La préparation et les schémas Windows sont pris en charge ; l’adaptateur privilégié Windows et les preuves publiques de retour arrière sont en préparation.
+
+## Règle de sécurité
+
+N’approuvez pas une modification que vous ne comprenez pas. Demandez une explication plus simple et un chemin de récupération visible.
+''',
+          'es': '''# CLARYEL RemoteOps — guía sencilla
+
+RemoteOps es una forma gratuita y de código abierto de gestionar tu ordenador Windows, Linux o macOS hablando o escribiendo en un chat de IA.
+
+## Qué puedes hacer
+
+- instalar, actualizar o eliminar software;
+- configurar ajustes aprobados del ordenador;
+- comprobar el estado del ordenador y del sistema;
+- reparar problemas y revertir si falla la verificación.
+
+## Uso sencillo
+
+1. Abre el chat de IA que prefieras.
+2. Di o escribe el resultado que deseas.
+3. Lee y aprueba el plan breve cuando sea claro.
+4. RemoteOps aplica una acción registrada y verifica el resultado o realiza la reversión.
+
+## Qué necesitas
+
+- **Un chat de IA.** ChatGPT está probado internamente. Otros chats de IA tienen rutas documentadas, pero no se han probado con RemoteOps.
+- **CLARYEL RemoteOps.** La capa de seguridad es gratuita y de código abierto.
+
+<details>
+<summary>Nota técnica</summary>
+
+Un repositorio privado gratuito de GitHub puede conservar el historial de configuración y las aprobaciones. GitHub es un mecanismo técnico en segundo plano, no la interfaz de usuario. Nunca guardes en Git contraseñas, claves, archivos personales, conversaciones, registros o copias de seguridad.
+
+</details>
+
+## Estado de las plataformas
+
+Los flujos de Linux y macOS están probados internamente; aún faltan pruebas públicas estables. La preparación y los esquemas de Windows están disponibles; el adaptador privilegiado de Windows y las pruebas públicas de reversión están en preparación.
+
+## Regla segura
+
+No apruebes un cambio que no entiendas. Pide una explicación más sencilla y una ruta de recuperación visible.
+''',
+          'nl': '''# CLARYEL RemoteOps — eenvoudige handleiding
+
+RemoteOps is een gratis opensourceoplossing om uw Windows-, Linux- of macOS-computer te beheren door te spreken of te typen in een AI-chat.
+
+## Wat u kunt doen
+
+- software installeren, bijwerken of verwijderen;
+- goedgekeurde computerinstellingen configureren;
+- de computer- en systeemstatus controleren;
+- problemen herstellen en terugzetten wanneer de controle mislukt.
+
+## Eenvoudig gebruik
+
+1. Open de AI-chat die u verkiest.
+2. Zeg of typ het gewenste resultaat.
+3. Lees en keur het korte plan goed wanneer het duidelijk is.
+4. RemoteOps voert een geregistreerde actie uit en controleert het resultaat of herstelt de vorige toestand.
+
+## Wat u nodig hebt
+
+- **Een AI-chat.** ChatGPT is intern getest. Andere AI-chats hebben gedocumenteerde routes, maar zijn niet met RemoteOps getest.
+- **CLARYEL RemoteOps.** De veiligheidslaag is gratis en open source.
+
+<details>
+<summary>Technische opmerking</summary>
+
+Een gratis privé-GitHub-repository kan configuratiegeschiedenis en goedkeuringen bewaren. GitHub is een technisch achtergrondmechanisme, niet de gebruikersinterface. Bewaar nooit wachtwoorden, sleutels, persoonlijke bestanden, gesprekken, logboeken of back-ups in Git.
+
+</details>
+
+## Platformstatus
+
+Linux- en macOS-workflows zijn intern getest; stabiel openbaar bewijs ontbreekt nog. Windows-onboarding en schema’s worden ondersteund; de bevoorrechte Windows-adapter en openbare herstelbewijzen worden voorbereid.
+
+## Veilige regel
+
+Keur geen wijziging goed die u niet begrijpt. Vraag om een eenvoudigere uitleg en een zichtbaar herstelpad.
+''',
+          'pt': '''# CLARYEL RemoteOps — guia simples
+
+O RemoteOps é uma forma gratuita e de código aberto de gerir o seu computador Windows, Linux ou macOS falando ou escrevendo numa conversa de IA.
+
+## O que pode fazer
+
+- instalar, atualizar ou remover software;
+- configurar definições aprovadas;
+- verificar o estado do computador e do sistema;
+- reparar problemas e reverter se a verificação falhar.
+
+## Utilização simples
+
+1. Abra a conversa de IA que preferir.
+2. Diga ou escreva o resultado pretendido.
+3. Leia e aprove o plano curto quando estiver claro.
+4. O RemoteOps aplica uma ação registada e verifica o resultado ou executa a reversão.
+
+## O que precisa
+
+- **Uma conversa de IA.** O ChatGPT foi testado internamente. Outras conversas de IA têm caminhos documentados, mas não foram testadas com o RemoteOps.
+- **CLARYEL RemoteOps.** A camada de segurança é gratuita e de código aberto.
+
+<details>
+<summary>Nota técnica</summary>
+
+Um repositório privado gratuito do GitHub pode guardar o histórico de configuração e as aprovações. O GitHub é um mecanismo técnico em segundo plano, não a interface do utilizador. Nunca guarde no Git palavras-passe, chaves, ficheiros pessoais, conversas, registos ou cópias de segurança.
+
+</details>
+
+## Estado das plataformas
+
+Os fluxos Linux e macOS foram testados internamente; ainda faltam provas públicas estáveis. A preparação e os esquemas Windows são suportados; o adaptador privilegiado Windows e as provas públicas de reversão estão em preparação.
+
+## Regra segura
+
+Não aprove uma alteração que não compreende. Peça uma explicação mais simples e um caminho de recuperação visível.
+''',
+          'pl': '''# CLARYEL RemoteOps — prosta instrukcja
+
+RemoteOps to bezpłatny projekt open source do zarządzania komputerem z Windows, Linux lub macOS przez rozmowę głosową albo tekstową z czatem AI.
+
+## Co możesz zrobić
+
+- instalować, aktualizować lub usuwać oprogramowanie;
+- konfigurować zatwierdzone ustawienia komputera;
+- sprawdzać stan komputera i systemu;
+- naprawiać problemy i wycofywać zmiany po nieudanej weryfikacji.
+
+## Proste użycie
+
+1. Otwórz wybrany czat AI.
+2. Powiedz lub napisz oczekiwany rezultat.
+3. Przeczytaj i zatwierdź krótki plan, gdy jest zrozumiały.
+4. RemoteOps wykonuje zarejestrowaną akcję i sprawdza wynik albo wycofuje zmianę.
+
+## Czego potrzebujesz
+
+- **Czatu AI.** ChatGPT został przetestowany wewnętrznie. Inne czaty AI mają udokumentowane ścieżki, ale nie zostały przetestowane z RemoteOps.
+- **CLARYEL RemoteOps.** Warstwa bezpieczeństwa jest bezpłatna i otwarta.
+
+<details>
+<summary>Informacja techniczna</summary>
+
+Bezpłatne prywatne repozytorium GitHub może przechowywać historię konfiguracji i zatwierdzenia. GitHub jest technicznym mechanizmem działającym w tle, a nie interfejsem użytkownika. Nigdy nie zapisuj w Git haseł, kluczy, plików osobistych, rozmów, dzienników ani kopii zapasowych.
+
+</details>
+
+## Status platform
+
+Przepływy Linux i macOS zostały przetestowane wewnętrznie; stabilne dowody publiczne są nadal wymagane. Przygotowanie i schematy Windows są obsługiwane; uprzywilejowany adapter Windows i publiczne dowody wycofania są w przygotowaniu.
+
+## Bezpieczna zasada
+
+Nie zatwierdzaj zmiany, której nie rozumiesz. Poproś o prostsze wyjaśnienie i widoczną drogę odzyskiwania.
+''',
+          'ro': '''# CLARYEL RemoteOps — ghid simplu
+
+RemoteOps este o soluție gratuită și open source pentru administrarea computerului Windows, Linux sau macOS prin voce ori text într-un chat AI.
+
+## Ce puteți face
+
+- instala, actualiza sau elimina programe;
+- configura setări aprobate ale computerului;
+- verifica starea computerului și a sistemului;
+- repara probleme și reveni dacă verificarea eșuează.
+
+## Utilizare simplă
+
+1. Deschideți chatul AI preferat.
+2. Spuneți sau scrieți rezultatul dorit.
+3. Citiți și aprobați planul scurt când este clar.
+4. RemoteOps aplică o acțiune înregistrată și verifică rezultatul sau revine la starea anterioară.
+
+## De ce aveți nevoie
+
+- **Un chat AI.** ChatGPT este testat intern. Alte chat-uri AI au căi documentate, dar nu sunt testate cu RemoteOps.
+- **CLARYEL RemoteOps.** Stratul de siguranță este gratuit și open source.
+
+<details>
+<summary>Notă tehnică</summary>
+
+Un depozit GitHub privat și gratuit poate păstra istoricul configurației și aprobările. GitHub este un mecanism tehnic de fundal, nu interfața utilizatorului. Nu salvați niciodată în Git parole, chei, fișiere personale, conversații, jurnale sau copii de siguranță.
+
+</details>
+
+## Starea platformelor
+
+Fluxurile Linux și macOS sunt testate intern; dovezile publice stabile sunt încă necesare. Pregătirea și schemele Windows sunt acceptate; adaptorul privilegiat Windows și dovezile publice de revenire sunt în pregătire.
+
+## Regula sigură
+
+Nu aprobați o modificare pe care nu o înțelegeți. Cereți o explicație mai simplă și o cale vizibilă de recuperare.
+''',
+          'cs': '''# CLARYEL RemoteOps — jednoduchý návod
+
+RemoteOps je bezplatný open-source způsob správy počítače s Windows, Linuxem nebo macOS pomocí hlasu či textu v AI chatu.
+
+## Co můžete dělat
+
+- instalovat, aktualizovat nebo odstraňovat software;
+- nastavovat schválené možnosti počítače;
+- kontrolovat stav počítače a systému;
+- opravovat problémy a vracet změny při neúspěšné kontrole.
+
+## Jednoduché použití
+
+1. Otevřete oblíbený AI chat.
+2. Řekněte nebo napište požadovaný výsledek.
+3. Přečtěte a schvalte krátký plán, když je srozumitelný.
+4. RemoteOps provede registrovanou akci a ověří výsledek nebo změnu vrátí.
+
+## Co potřebujete
+
+- **AI chat.** ChatGPT byl interně otestován. Ostatní AI chaty mají zdokumentované cesty, ale nebyly testovány s RemoteOps.
+- **CLARYEL RemoteOps.** Bezpečnostní vrstva je zdarma a open source.
+
+<details>
+<summary>Technická poznámka</summary>
+
+Bezplatné soukromé úložiště GitHub může uchovávat historii konfigurace a schválení. GitHub je technický mechanismus na pozadí, nikoli uživatelské rozhraní. Do Gitu nikdy neukládejte hesla, klíče, osobní soubory, konverzace, protokoly ani zálohy.
+
+</details>
+
+## Stav platforem
+
+Postupy Linux a macOS jsou interně otestovány; stabilní veřejné důkazy jsou stále nutné. Příprava a schémata Windows jsou podporovány; privilegovaný Windows adaptér a veřejné důkazy návratu se připravují.
+
+## Bezpečné pravidlo
+
+Neschvalujte změnu, které nerozumíte. Požádejte o jednodušší vysvětlení a viditelnou cestu obnovy.
+''',
+          'sv': '''# CLARYEL RemoteOps — enkel guide
+
+RemoteOps är ett kostnadsfritt projekt med öppen källkod för att hantera en Windows-, Linux- eller macOS-dator genom tal eller text i en AI-chatt.
+
+## Vad du kan göra
+
+- installera, uppdatera eller ta bort program;
+- konfigurera godkända datorinställningar;
+- kontrollera datorns och systemets tillstånd;
+- reparera problem och återställa när verifieringen misslyckas.
+
+## Enkel användning
+
+1. Öppna den AI-chatt du föredrar.
+2. Säg eller skriv vilket resultat du vill ha.
+3. Läs och godkänn den korta planen när den är tydlig.
+4. RemoteOps kör en registrerad åtgärd och kontrollerar resultatet eller återställer.
+
+## Vad du behöver
+
+- **En AI-chatt.** ChatGPT är internt testat. Andra AI-chattar har dokumenterade vägar men är inte testade med RemoteOps.
+- **CLARYEL RemoteOps.** Säkerhetslagret är gratis och har öppen källkod.
+
+<details>
+<summary>Teknisk information</summary>
+
+Ett kostnadsfritt privat GitHub-arkiv kan lagra konfigurationshistorik och godkännanden. GitHub är en teknisk bakgrundsmekanism, inte användargränssnittet. Lagra aldrig lösenord, nycklar, personliga filer, samtal, loggar eller säkerhetskopior i Git.
+
+</details>
+
+## Plattformstatus
+
+Linux- och macOS-flödena är internt testade; stabila offentliga bevis krävs fortfarande. Windows-förberedelse och scheman stöds; den privilegierade Windows-adaptern och offentliga återställningsbevis förbereds.
+
+## Säker regel
+
+Godkänn inte en ändring du inte förstår. Be om en enklare förklaring och en synlig återställningsväg.
+''',
+          'el': '''# CLARYEL RemoteOps — απλός οδηγός
+
+Το RemoteOps είναι ένας δωρεάν τρόπος ανοικτού κώδικα για διαχείριση υπολογιστή Windows, Linux ή macOS με φωνή ή κείμενο σε ένα AI chat.
+
+## Τι μπορείτε να κάνετε
+
+- εγκατάσταση, ενημέρωση ή αφαίρεση λογισμικού·
+- ρύθμιση εγκεκριμένων επιλογών του υπολογιστή·
+- έλεγχο της κατάστασης υπολογιστή και συστήματος·
+- επιδιόρθωση προβλημάτων και επαναφορά όταν αποτυγχάνει η επαλήθευση.
+
+## Απλή χρήση
+
+1. Ανοίξτε το AI chat που προτιμάτε.
+2. Πείτε ή γράψτε το επιθυμητό αποτέλεσμα.
+3. Διαβάστε και εγκρίνετε το σύντομο σχέδιο όταν είναι σαφές.
+4. Το RemoteOps εκτελεί καταχωρισμένη ενέργεια και ελέγχει το αποτέλεσμα ή επαναφέρει.
+
+## Τι χρειάζεστε
+
+- **Ένα AI chat.** Το ChatGPT έχει δοκιμαστεί εσωτερικά. Άλλα AI chat έχουν τεκμηριωμένες διαδρομές αλλά δεν έχουν δοκιμαστεί με το RemoteOps.
+- **CLARYEL RemoteOps.** Το επίπεδο ασφαλείας είναι δωρεάν και ανοικτού κώδικα.
+
+<details>
+<summary>Τεχνική σημείωση</summary>
+
+Ένα δωρεάν ιδιωτικό αποθετήριο GitHub μπορεί να διατηρεί το ιστορικό ρυθμίσεων και εγκρίσεων. Το GitHub είναι τεχνικός μηχανισμός παρασκηνίου, όχι το περιβάλλον χρήστη. Μην αποθηκεύετε ποτέ στο Git κωδικούς, κλειδιά, προσωπικά αρχεία, συνομιλίες, αρχεία καταγραφής ή αντίγραφα ασφαλείας.
+
+</details>
+
+## Κατάσταση πλατφορμών
+
+Οι ροές Linux και macOS έχουν δοκιμαστεί εσωτερικά· απαιτούνται ακόμη σταθερά δημόσια τεκμήρια. Η προετοιμασία και τα σχήματα Windows υποστηρίζονται· ο προνομιακός προσαρμογέας Windows και τα δημόσια τεκμήρια επαναφοράς προετοιμάζονται.
+
+## Ασφαλής κανόνας
+
+Μην εγκρίνετε αλλαγή που δεν καταλαβαίνετε. Ζητήστε απλούστερη εξήγηση και ορατή διαδρομή αποκατάστασης.
+''',
+          'da': '''# CLARYEL RemoteOps — enkel vejledning
+
+RemoteOps er en gratis open source-løsning til at administrere en Windows-, Linux- eller macOS-computer via tale eller tekst i en AI-chat.
+
+## Hvad du kan gøre
+
+- installere, opdatere eller fjerne software;
+- konfigurere godkendte computerindstillinger;
+- kontrollere computerens og systemets tilstand;
+- reparere problemer og rulle tilbage, hvis kontrollen mislykkes.
+
+## Enkel brug
+
+1. Åbn den AI-chat, du foretrækker.
+2. Sig eller skriv det ønskede resultat.
+3. Læs og godkend den korte plan, når den er tydelig.
+4. RemoteOps udfører en registreret handling og kontrollerer resultatet eller ruller tilbage.
+
+## Hvad du behøver
+
+- **En AI-chat.** ChatGPT er testet internt. Andre AI-chats har dokumenterede veje, men er ikke testet med RemoteOps.
+- **CLARYEL RemoteOps.** Sikkerhedslaget er gratis og open source.
+
+<details>
+<summary>Teknisk bemærkning</summary>
+
+Et gratis privat GitHub-repository kan gemme konfigurationshistorik og godkendelser. GitHub er en teknisk baggrundsmekanisme, ikke brugergrænsefladen. Gem aldrig adgangskoder, nøgler, personlige filer, samtaler, logfiler eller sikkerhedskopier i Git.
+
+</details>
+
+## Platformstatus
+
+Linux- og macOS-forløb er testet internt; stabil offentlig dokumentation mangler stadig. Windows-klargøring og skemaer understøttes; den privilegerede Windows-adapter og offentlige tilbagerulningsbeviser forberedes.
+
+## Sikker regel
+
+Godkend ikke en ændring, du ikke forstår. Bed om en enklere forklaring og en synlig gendannelsesvej.
+''',
+          'fi': '''# CLARYEL RemoteOps — helppo opas
+
+RemoteOps on ilmainen avoimen lähdekoodin tapa hallita Windows-, Linux- tai macOS-tietokonetta puhumalla tai kirjoittamalla AI-keskusteluun.
+
+## Mitä voit tehdä
+
+- asentaa, päivittää tai poistaa ohjelmistoja;
+- määrittää hyväksyttyjä tietokoneasetuksia;
+- tarkistaa tietokoneen ja järjestelmän tilan;
+- korjata ongelmia ja palauttaa muutoksen, jos tarkistus epäonnistuu.
+
+## Helppo käyttö
+
+1. Avaa haluamasi AI-keskustelu.
+2. Sano tai kirjoita haluttu tulos.
+3. Lue ja hyväksy lyhyt suunnitelma, kun se on selkeä.
+4. RemoteOps suorittaa rekisteröidyn toiminnon ja tarkistaa tuloksen tai palauttaa tilan.
+
+## Mitä tarvitset
+
+- **AI-keskustelun.** ChatGPT on testattu sisäisesti. Muilla AI-keskusteluilla on dokumentoidut polut, mutta niitä ei ole testattu RemoteOpsin kanssa.
+- **CLARYEL RemoteOpsin.** Turvakerros on ilmainen ja avoimen lähdekoodin.
+
+<details>
+<summary>Tekninen huomautus</summary>
+
+Ilmainen yksityinen GitHub-arkisto voi säilyttää määrityshistorian ja hyväksynnät. GitHub on taustalla toimiva tekninen mekanismi, ei käyttöliittymä. Älä koskaan tallenna Gitiin salasanoja, avaimia, henkilökohtaisia tiedostoja, keskusteluja, lokeja tai varmuuskopioita.
+
+</details>
+
+## Alustojen tila
+
+Linux- ja macOS-työnkulut on testattu sisäisesti; vakaa julkinen näyttö puuttuu vielä. Windows-valmistelu ja skeemat ovat tuettuja; etuoikeutettua Windows-adapteria ja julkista palautusnäyttöä valmistellaan.
+
+## Turvallinen sääntö
+
+Älä hyväksy muutosta, jota et ymmärrä. Pyydä yksinkertaisempi selitys ja näkyvä palautuspolku.
+''',
+          'zh-CN': '''# CLARYEL RemoteOps — 简明指南
+
+RemoteOps 是一种免费、开源的方式，可通过 AI 聊天中的语音或文字管理您自己的 Windows、Linux 或 macOS 电脑。
+
+## 您可以做什么
+
+- 安装、更新或删除软件；
+- 配置经过批准的电脑设置；
+- 检查电脑和系统健康状态；
+- 修复问题，并在验证失败时回滚。
+
+## 简单使用
+
+1. 打开您喜欢的 AI 聊天工具。
+2. 说出或输入希望实现的结果。
+3. 在计划清楚时阅读并批准简短方案。
+4. RemoteOps 执行已登记的操作并验证结果，或者进行回滚。
+
+## 您需要什么
+
+- **AI 聊天工具。** ChatGPT 已经过内部测试。其他 AI 聊天工具有已记录的接入方式，但尚未与 RemoteOps 完成测试。
+- **CLARYEL RemoteOps。** 安全层免费且开源。
+
+<details>
+<summary>技术说明</summary>
+
+免费的私有 GitHub 仓库可以保存配置历史和批准记录。GitHub 是后台技术机制，不是用户界面。切勿在 Git 中保存密码、密钥、个人文件、对话、日志或备份。
+
+</details>
+
+## 平台状态
+
+Linux 和 macOS 工作流程已经过内部测试，但稳定的公开证据仍待发布。Windows 初始化和方案结构已受支持；特权 Windows 适配器和公开回滚证据正在准备中。
+
+## 安全规则
+
+不要批准您不理解的更改。要求更简单的说明和清晰可见的恢复路径。
+''',
+          'hi': '''# CLARYEL RemoteOps — सरल मार्गदर्शिका
+
+RemoteOps एक मुफ़्त, ओपन-सोर्स तरीका है जिससे आप AI चैट में बोलकर या लिखकर अपने Windows, Linux या macOS कंप्यूटर को प्रबंधित कर सकते हैं।
+
+## आप क्या कर सकते हैं
+
+- सॉफ़्टवेयर इंस्टॉल, अपडेट या हटाना;
+- स्वीकृत कंप्यूटर सेटिंग कॉन्फ़िगर करना;
+- कंप्यूटर और सिस्टम की स्थिति जाँचना;
+- समस्याएँ ठीक करना और जाँच विफल होने पर रोलबैक करना।
+
+## सरल उपयोग
+
+1. अपनी पसंद का AI चैट खोलें।
+2. इच्छित परिणाम बोलें या लिखें।
+3. स्पष्ट होने पर छोटी योजना पढ़ें और स्वीकृत करें।
+4. RemoteOps पंजीकृत कार्रवाई चलाता है और परिणाम जाँचता है या रोलबैक करता है।
+
+## आपको क्या चाहिए
+
+- **एक AI चैट।** ChatGPT का आंतरिक परीक्षण किया गया है। अन्य AI चैट के दस्तावेज़ित मार्ग हैं, लेकिन उनका RemoteOps के साथ परीक्षण नहीं हुआ है।
+- **CLARYEL RemoteOps।** सुरक्षा परत मुफ़्त और ओपन सोर्स है।
+
+<details>
+<summary>तकनीकी टिप्पणी</summary>
+
+एक मुफ़्त निजी GitHub रिपॉज़िटरी कॉन्फ़िगरेशन इतिहास और अनुमोदन रख सकती है। GitHub पृष्ठभूमि तकनीकी व्यवस्था है, उपयोगकर्ता इंटरफ़ेस नहीं। Git में पासवर्ड, कुंजी, निजी फ़ाइलें, बातचीत, लॉग या बैकअप कभी न रखें।
+
+</details>
+
+## प्लेटफ़ॉर्म स्थिति
+
+Linux और macOS कार्यप्रवाह का आंतरिक परीक्षण हुआ है; स्थिर सार्वजनिक प्रमाण अभी आवश्यक हैं। Windows आरंभिक सेटअप और स्कीमा समर्थित हैं; विशेषाधिकार प्राप्त Windows अडैप्टर और सार्वजनिक रोलबैक प्रमाण तैयार किए जा रहे हैं।
+
+## सुरक्षित नियम
+
+जिस बदलाव को आप नहीं समझते उसे स्वीकृत न करें। सरल व्याख्या और स्पष्ट पुनर्प्राप्ति मार्ग माँगें।
+''',
+          'ar': '''# CLARYEL RemoteOps — دليل مبسّط
+
+RemoteOps طريقة مجانية ومفتوحة المصدر لإدارة حاسوب Windows أو Linux أو macOS بالصوت أو الكتابة داخل محادثة ذكاء اصطناعي.
+
+## ما الذي يمكنك فعله
+
+- تثبيت البرامج أو تحديثها أو إزالتها؛
+- إعداد خيارات الحاسوب المعتمدة؛
+- فحص حالة الحاسوب والنظام؛
+- إصلاح المشكلات والتراجع عند فشل التحقق.
+
+## استخدام بسيط
+
+1. افتح محادثة الذكاء الاصطناعي التي تفضلها.
+2. قل أو اكتب النتيجة المطلوبة.
+3. اقرأ الخطة القصيرة ووافق عليها عندما تكون واضحة.
+4. ينفذ RemoteOps إجراءً مسجلاً ويتحقق من النتيجة أو يتراجع.
+
+## ما الذي تحتاجه
+
+- **محادثة ذكاء اصطناعي.** تم اختبار ChatGPT داخلياً. للمحادثات الأخرى مسارات موثقة لكنها لم تُختبر مع RemoteOps.
+- **CLARYEL RemoteOps.** طبقة الأمان مجانية ومفتوحة المصدر.
+
+<details>
+<summary>ملاحظة تقنية</summary>
+
+يمكن لمستودع GitHub خاص مجاني حفظ سجل الإعدادات والموافقات. GitHub آلية تقنية في الخلفية وليس واجهة المستخدم. لا تحفظ أبداً كلمات المرور أو المفاتيح أو الملفات الشخصية أو المحادثات أو السجلات أو النسخ الاحتياطية في Git.
+
+</details>
+
+## حالة المنصات
+
+تم اختبار مسارات Linux وmacOS داخلياً، ولا تزال الأدلة العامة المستقرة مطلوبة. إعداد Windows والمخططات مدعومان؛ ويجري تجهيز مهايئ Windows ذي الصلاحيات وأدلة التراجع العامة.
+
+## قاعدة آمنة
+
+لا توافق على تغيير لا تفهمه. اطلب شرحاً أبسط ومسار استعادة واضحاً.
+''',
+          'id': '''# CLARYEL RemoteOps — panduan sederhana
+
+RemoteOps adalah cara gratis dan sumber terbuka untuk mengelola komputer Windows, Linux, atau macOS dengan berbicara atau mengetik di chat AI.
+
+## Yang dapat Anda lakukan
+
+- memasang, memperbarui, atau menghapus perangkat lunak;
+- mengonfigurasi pengaturan komputer yang disetujui;
+- memeriksa kesehatan komputer dan sistem;
+- memperbaiki masalah dan melakukan pemulihan jika verifikasi gagal.
+
+## Penggunaan sederhana
+
+1. Buka chat AI yang Anda pilih.
+2. Ucapkan atau ketik hasil yang diinginkan.
+3. Baca dan setujui rencana singkat ketika sudah jelas.
+4. RemoteOps menjalankan tindakan terdaftar dan memverifikasi hasil atau melakukan pemulihan.
+
+## Yang Anda perlukan
+
+- **Chat AI.** ChatGPT telah diuji secara internal. Chat AI lain memiliki jalur terdokumentasi tetapi belum diuji dengan RemoteOps.
+- **CLARYEL RemoteOps.** Lapisan keamanan gratis dan sumber terbuka.
+
+<details>
+<summary>Catatan teknis</summary>
+
+Repositori GitHub privat gratis dapat menyimpan riwayat konfigurasi dan persetujuan. GitHub adalah mekanisme teknis di belakang layar, bukan antarmuka pengguna. Jangan pernah menyimpan kata sandi, kunci, berkas pribadi, percakapan, log, atau cadangan di Git.
+
+</details>
+
+## Status platform
+
+Alur Linux dan macOS telah diuji secara internal; bukti publik stabil masih diperlukan. Persiapan dan skema Windows didukung; adaptor Windows berhak istimewa dan bukti pemulihan publik sedang disiapkan.
+
+## Aturan aman
+
+Jangan setujui perubahan yang tidak Anda pahami. Minta penjelasan yang lebih sederhana dan jalur pemulihan yang terlihat.
+''',
+          'uk': '''# CLARYEL RemoteOps — простий посібник
+
+RemoteOps — безкоштовний проєкт із відкритим кодом для керування комп’ютером Windows, Linux або macOS голосом чи текстом через ШІ-чат.
+
+## Що можна робити
+
+- встановлювати, оновлювати або видаляти програми;
+- налаштовувати дозволені параметри комп’ютера;
+- перевіряти стан комп’ютера й системи;
+- виправляти проблеми та виконувати відкат, якщо перевірка не пройдена.
+
+## Просте використання
+
+1. Відкрийте зручний ШІ-чат.
+2. Скажіть або напишіть бажаний результат.
+3. Прочитайте й підтвердьте короткий план, коли він зрозумілий.
+4. RemoteOps виконує зареєстровану дію та перевіряє результат або робить відкат.
+
+## Що потрібно
+
+- **ШІ-чат.** ChatGPT протестовано внутрішньо. Інші ШІ-чати мають задокументовані шляхи, але не протестовані з RemoteOps.
+- **CLARYEL RemoteOps.** Захисний рівень безкоштовний і має відкритий код.
+
+<details>
+<summary>Технічне пояснення</summary>
+
+Безкоштовний приватний репозиторій GitHub може зберігати історію конфігурації та підтвердження. GitHub — фоновий технічний механізм, а не інтерфейс користувача. Ніколи не зберігайте в Git паролі, ключі, особисті файли, розмови, журнали чи резервні копії.
+
+</details>
+
+## Стан платформ
+
+Робочі процеси Linux і macOS протестовано внутрішньо; стабільні публічні докази ще потрібні. Підготовка та схеми Windows підтримуються; привілейований адаптер Windows і публічні докази відкату готуються.
+
+## Безпечне правило
+
+Не підтверджуйте зміну, якої не розумієте. Попросіть простіше пояснення та видимий шлях відновлення.
+''',
+          'ru': '''# CLARYEL RemoteOps — простая инструкция
+
+RemoteOps — бесплатный продукт с открытым кодом для управления компьютером на Windows, Linux или macOS голосом или текстом через ИИ-чат.
+
+## Что можно делать
+
+- устанавливать, обновлять и удалять программы;
+- настраивать разрешённые параметры компьютера;
+- проверять состояние компьютера и системы;
+- исправлять проблемы и выполнять откат, если проверка не пройдена.
+
+## Простое использование
+
+1. Откройте удобный ИИ-чат.
+2. Скажите или напишите, какой результат нужен.
+3. Прочитайте и подтвердите короткий план, когда он понятен.
+4. RemoteOps выполняет зарегистрированное действие и проверяет результат либо делает откат.
+
+## Что требуется
+
+- **ИИ-чат.** ChatGPT протестирован внутри CLARYEL. Для других ИИ-чатов описаны пути подключения, но они ещё не протестированы с RemoteOps.
+- **CLARYEL RemoteOps.** Защитный слой бесплатный и имеет открытый исходный код.
+
+<details>
+<summary>Техническое пояснение</summary>
+
+Бесплатный приватный репозиторий GitHub может хранить историю конфигурации и подтверждения. GitHub — фоновый технический механизм, а не пользовательский интерфейс. Никогда не сохраняйте в Git пароли, ключи, личные файлы, переписку, журналы или резервные копии.
+
+</details>
+
+## Статус платформ
+
+Рабочие процессы Linux и macOS протестированы внутри CLARYEL; стабильные публичные доказательства ещё требуются. Подготовка и схемы Windows поддерживаются; привилегированный Windows-адаптер и публичные доказательства отката готовятся.
+
+## Безопасное правило
+
+Не подтверждайте изменение, которое вы не понимаете. Попросите более простое объяснение и понятный путь восстановления.
+'''
+          }
+
+          root = Path('USER_GUIDES/locales')
+          for locale, content in guides.items():
+              (root / f'{locale}.md').write_text(content, encoding='utf-8')
+          PY
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add USER_GUIDES/locales
+          git diff --cached --quiet && exit 0
+          git commit -m "Refresh twenty voice-first user guides"
+          git push origin HEAD:agent/simplify-voice-first-onboarding
