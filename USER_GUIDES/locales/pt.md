@@ -1,22 +1,37 @@
 # CLARYEL RemoteOps — guia simples
 
-O RemoteOps ajuda a gerir o seu próprio computador Linux ou macOS sem memorizar comandos de administração.
+O RemoteOps é uma forma gratuita e de código aberto de gerir o seu computador Windows, Linux ou macOS falando ou escrevendo numa conversa de IA.
 
-## Quatro passos
+## O que pode fazer
 
-1. **Ligue** um repositório privado de configuração.
-2. **Descreva** em linguagem simples o resultado pretendido.
-3. **Aprove** o plano apenas depois de verificar impacto, risco, cópia de segurança e reversão.
-4. **Verifique** o estado do sistema. Se uma verificação falhar, deve ser restaurado o último estado funcional.
+- instalar, atualizar ou remover software;
+- configurar definições aprovadas;
+- verificar o estado do computador e do sistema;
+- reparar problemas e reverter se a verificação falhar.
 
-## Mantenha privado
+## Utilização simples
 
-Nunca coloque no repositório público palavras-passe, tokens, chaves privadas, códigos de recuperação, ficheiros pessoais, prompts, conversas, registos ou cópias de segurança. A configuração específica do computador pertence ao repositório privado; os segredos ficam em armazenamento local protegido.
+1. Abra a conversa de IA que preferir.
+2. Diga ou escreva o resultado pretendido.
+3. Leia e aprove o plano curto quando estiver claro.
+4. O RemoteOps aplica uma ação registada e verifica o resultado ou executa a reversão.
 
-## Estado da IA
+## O que precisa
 
-O ChatGPT foi testado internamente no fluxo CLARYEL. Claude, Gemini, Perplexity e Grok estão documentados, mas não foram testados com o RemoteOps. O acesso ao GitHub no ChatGPT Free não é garantido e o controlo com escrita não é anunciado como funcionalidade universal do plano gratuito.
+- **Uma conversa de IA.** O ChatGPT foi testado internamente. Outras conversas de IA têm caminhos documentados, mas não foram testadas com o RemoteOps.
+- **CLARYEL RemoteOps.** A camada de segurança é gratuita e de código aberto.
+
+<details>
+<summary>Nota técnica</summary>
+
+Um repositório privado gratuito do GitHub pode guardar o histórico de configuração e as aprovações. O GitHub é um mecanismo técnico em segundo plano, não a interface do utilizador. Nunca guarde no Git palavras-passe, chaves, ficheiros pessoais, conversas, registos ou cópias de segurança.
+
+</details>
+
+## Estado das plataformas
+
+Os fluxos Linux e macOS foram testados internamente; ainda faltam provas públicas estáveis. A preparação e os esquemas Windows são suportados; o adaptador privilegiado Windows e as provas públicas de reversão estão em preparação.
 
 ## Regra segura
 
-Se não compreender uma alteração proposta, não a aprove. Peça uma explicação mais simples e um caminho de reversão visível.
+Não aprove uma alteração que não compreende. Peça uma explicação mais simples e um caminho de recuperação visível.
