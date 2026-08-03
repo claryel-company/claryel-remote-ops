@@ -18,7 +18,7 @@
         "additionalProperties": false,
         "required": ["adapter", "action", "target"],
         "properties": {
-          "adapter": {"enum": ["linux", "macos"]},
+          "adapter": {"enum": ["windows", "linux", "macos"]},
           "action": {"type": "string", "pattern": "^[a-z][a-z0-9-]{2,50}$"},
           "target": {"type": "string", "minLength": 1, "maxLength": 200},
           "parameters": {"type": "object"}

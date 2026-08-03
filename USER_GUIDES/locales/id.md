@@ -1,22 +1,37 @@
 # CLARYEL RemoteOps — panduan sederhana
 
-RemoteOps membantu Anda mengelola komputer Linux atau macOS milik sendiri tanpa menghafal perintah administrasi.
+RemoteOps adalah cara gratis dan sumber terbuka untuk mengelola komputer Windows, Linux, atau macOS dengan berbicara atau mengetik di chat AI.
 
-## Empat langkah
+## Yang dapat Anda lakukan
 
-1. **Hubungkan** repositori konfigurasi privat.
-2. **Jelaskan** hasil yang diinginkan dengan bahasa sederhana.
-3. **Setujui** rencana setelah memeriksa dampak, risiko, cadangan, dan pemulihan.
-4. **Verifikasi** kesehatan sistem. Pemeriksaan yang gagal harus mengembalikan kondisi terakhir yang berfungsi.
+- memasang, memperbarui, atau menghapus perangkat lunak;
+- mengonfigurasi pengaturan komputer yang disetujui;
+- memeriksa kesehatan komputer dan sistem;
+- memperbaiki masalah dan melakukan pemulihan jika verifikasi gagal.
 
-## Jaga tetap privat
+## Penggunaan sederhana
 
-Jangan pernah menyimpan kata sandi, token, kunci privat, kode pemulihan, berkas pribadi, prompt, percakapan, log, atau cadangan di repositori publik. Konfigurasi khusus komputer berada di repositori privat; nilai rahasia tetap di penyimpanan lokal yang terlindungi.
+1. Buka chat AI yang Anda pilih.
+2. Ucapkan atau ketik hasil yang diinginkan.
+3. Baca dan setujui rencana singkat ketika sudah jelas.
+4. RemoteOps menjalankan tindakan terdaftar dan memverifikasi hasil atau melakukan pemulihan.
 
-## Status AI
+## Yang Anda perlukan
 
-ChatGPT telah diuji secara internal dalam alur CLARYEL. Claude, Gemini, Perplexity, dan Grok telah didokumentasikan tetapi belum diuji dengan RemoteOps. Akses GitHub pada ChatGPT Free tidak dijamin dan kontrol tulis tidak dipromosikan sebagai fitur gratis universal.
+- **Chat AI.** ChatGPT telah diuji secara internal. Chat AI lain memiliki jalur terdokumentasi tetapi belum diuji dengan RemoteOps.
+- **CLARYEL RemoteOps.** Lapisan keamanan gratis dan sumber terbuka.
+
+<details>
+<summary>Catatan teknis</summary>
+
+Repositori GitHub privat gratis dapat menyimpan riwayat konfigurasi dan persetujuan. GitHub adalah mekanisme teknis di belakang layar, bukan antarmuka pengguna. Jangan pernah menyimpan kata sandi, kunci, berkas pribadi, percakapan, log, atau cadangan di Git.
+
+</details>
+
+## Status platform
+
+Alur Linux dan macOS telah diuji secara internal; bukti publik stabil masih diperlukan. Persiapan dan skema Windows didukung; adaptor Windows berhak istimewa dan bukti pemulihan publik sedang disiapkan.
 
 ## Aturan aman
 
-Jika Anda tidak memahami perubahan yang diusulkan, jangan menyetujuinya. Minta penjelasan yang lebih sederhana dan jalur pemulihan yang jelas.
+Jangan setujui perubahan yang tidak Anda pahami. Minta penjelasan yang lebih sederhana dan jalur pemulihan yang terlihat.

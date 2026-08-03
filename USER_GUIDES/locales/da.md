@@ -1,22 +1,37 @@
 # CLARYEL RemoteOps — enkel vejledning
 
-RemoteOps hjælper dig med at administrere din egen Linux- eller macOS-computer uden at huske administrationskommandoer.
+RemoteOps er en gratis open source-løsning til at administrere en Windows-, Linux- eller macOS-computer via tale eller tekst i en AI-chat.
 
-## Fire trin
+## Hvad du kan gøre
 
-1. **Forbind** et privat konfigurationsrepository.
-2. **Beskriv** det ønskede resultat med almindelige ord.
-3. **Godkend** først planen efter kontrol af påvirkning, risiko, sikkerhedskopi og tilbagerulning.
-4. **Kontrollér** systemets tilstand. En mislykket kontrol skal gendanne den seneste fungerende tilstand.
+- installere, opdatere eller fjerne software;
+- konfigurere godkendte computerindstillinger;
+- kontrollere computerens og systemets tilstand;
+- reparere problemer og rulle tilbage, hvis kontrollen mislykkes.
 
-## Hold privat
+## Enkel brug
 
-Læg aldrig adgangskoder, tokens, private nøgler, gendannelseskoder, personlige filer, prompts, samtaler, logfiler eller sikkerhedskopier i det offentlige repository. Computerspecifik konfiguration hører til i dit private repository; hemmeligheder bliver i beskyttet lokal lagring.
+1. Åbn den AI-chat, du foretrækker.
+2. Sig eller skriv det ønskede resultat.
+3. Læs og godkend den korte plan, når den er tydelig.
+4. RemoteOps udfører en registreret handling og kontrollerer resultatet eller ruller tilbage.
 
-## AI-status
+## Hvad du behøver
 
-ChatGPT er testet internt i CLARYEL-forløbet. Claude, Gemini, Perplexity og Grok er dokumenteret, men ikke testet med RemoteOps. GitHub-adgang i ChatGPT Free er ikke garanteret, og skriveadgang markedsføres ikke som en universel gratisfunktion.
+- **En AI-chat.** ChatGPT er testet internt. Andre AI-chats har dokumenterede veje, men er ikke testet med RemoteOps.
+- **CLARYEL RemoteOps.** Sikkerhedslaget er gratis og open source.
+
+<details>
+<summary>Teknisk bemærkning</summary>
+
+Et gratis privat GitHub-repository kan gemme konfigurationshistorik og godkendelser. GitHub er en teknisk baggrundsmekanisme, ikke brugergrænsefladen. Gem aldrig adgangskoder, nøgler, personlige filer, samtaler, logfiler eller sikkerhedskopier i Git.
+
+</details>
+
+## Platformstatus
+
+Linux- og macOS-forløb er testet internt; stabil offentlig dokumentation mangler stadig. Windows-klargøring og skemaer understøttes; den privilegerede Windows-adapter og offentlige tilbagerulningsbeviser forberedes.
 
 ## Sikker regel
 
-Godkend ikke en foreslået ændring, som du ikke forstår. Bed om en enklere forklaring og en tydelig tilbagerulningsvej.
+Godkend ikke en ændring, du ikke forstår. Bed om en enklere forklaring og en synlig gendannelsesvej.
