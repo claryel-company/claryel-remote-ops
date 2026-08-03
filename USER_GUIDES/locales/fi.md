@@ -1,22 +1,37 @@
 # CLARYEL RemoteOps — helppo opas
 
-RemoteOps auttaa hallitsemaan omaa Linux- tai macOS-tietokonetta ilman ylläpitokomentojen opettelua ulkoa.
+RemoteOps on ilmainen avoimen lähdekoodin tapa hallita Windows-, Linux- tai macOS-tietokonetta puhumalla tai kirjoittamalla AI-keskusteluun.
 
-## Neljä vaihetta
+## Mitä voit tehdä
 
-1. **Yhdistä** yksityinen määritysarkisto.
-2. **Kuvaile** haluttu tulos tavallisilla sanoilla.
-3. **Hyväksy** suunnitelma vasta, kun vaikutus, riski, varmuuskopio ja palautus on tarkistettu.
-4. **Varmista** järjestelmän tila. Epäonnistuneen tarkistuksen on palautettava viimeisin toimiva tila.
+- asentaa, päivittää tai poistaa ohjelmistoja;
+- määrittää hyväksyttyjä tietokoneasetuksia;
+- tarkistaa tietokoneen ja järjestelmän tilan;
+- korjata ongelmia ja palauttaa muutoksen, jos tarkistus epäonnistuu.
 
-## Pidä yksityisenä
+## Helppo käyttö
 
-Älä koskaan tallenna julkiseen arkistoon salasanoja, tunnuksia, yksityisiä avaimia, palautuskoodeja, henkilökohtaisia tiedostoja, kehotteita, keskusteluja, lokeja tai varmuuskopioita. Tietokonekohtainen määritys kuuluu yksityiseen arkistoon; salaisuudet pysyvät suojatussa paikallisessa tallennuksessa.
+1. Avaa haluamasi AI-keskustelu.
+2. Sano tai kirjoita haluttu tulos.
+3. Lue ja hyväksy lyhyt suunnitelma, kun se on selkeä.
+4. RemoteOps suorittaa rekisteröidyn toiminnon ja tarkistaa tuloksen tai palauttaa tilan.
 
-## Tekoälyn tila
+## Mitä tarvitset
 
-ChatGPT on testattu sisäisesti CLARYEL-prosessissa. Claude, Gemini, Perplexity ja Grok on dokumentoitu, mutta niitä ei ole testattu RemoteOpsin kanssa. GitHub-käyttö ChatGPT Free -tasolla ei ole taattu, eikä kirjoittavaa hallintaa luvata yleiseksi ilmaisominaisuudeksi.
+- **AI-keskustelun.** ChatGPT on testattu sisäisesti. Muilla AI-keskusteluilla on dokumentoidut polut, mutta niitä ei ole testattu RemoteOpsin kanssa.
+- **CLARYEL RemoteOpsin.** Turvakerros on ilmainen ja avoimen lähdekoodin.
+
+<details>
+<summary>Tekninen huomautus</summary>
+
+Ilmainen yksityinen GitHub-arkisto voi säilyttää määrityshistorian ja hyväksynnät. GitHub on taustalla toimiva tekninen mekanismi, ei käyttöliittymä. Älä koskaan tallenna Gitiin salasanoja, avaimia, henkilökohtaisia tiedostoja, keskusteluja, lokeja tai varmuuskopioita.
+
+</details>
+
+## Alustojen tila
+
+Linux- ja macOS-työnkulut on testattu sisäisesti; vakaa julkinen näyttö puuttuu vielä. Windows-valmistelu ja skeemat ovat tuettuja; etuoikeutettua Windows-adapteria ja julkista palautusnäyttöä valmistellaan.
 
 ## Turvallinen sääntö
 
-Jos et ymmärrä ehdotettua muutosta, älä hyväksy sitä. Pyydä yksinkertaisempi selitys ja näkyvä palautusreitti.
+Älä hyväksy muutosta, jota et ymmärrä. Pyydä yksinkertaisempi selitys ja näkyvä palautuspolku.
