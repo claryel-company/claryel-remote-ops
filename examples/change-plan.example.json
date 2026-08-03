@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.0",
+  "summary": "Enable the synthetic monitoring service and verify local health.",
+  "risk": "medium",
+  "approvalRequired": true,
+  "operations": [
+    {
+      "adapter": "linux",
+      "action": "set-service-state",
+      "target": "example-monitoring",
+      "parameters": {"state": "enabled"}
+    }
+  ],
+  "healthChecks": ["example-monitoring reports healthy on the local interface"],
+  "rollback": {
+    "required": true,
+    "method": "restore the previous service-state snapshot"
+  }
+}

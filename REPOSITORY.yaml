@@ -1,0 +1,54 @@
+schema_version: 3
+name: claryel-remote-ops
+github: claryel-company/claryel-remote-ops
+product_name: CLARYEL RemoteOps
+visibility: public
+canonical_language: en
+status: active
+accepted: pending-first-public-release
+level: public-product-core
+category: safe-remote-computer-operations
+role: public-remote-operations-engine
+website: https://remoteops.claryel.com
+central_repository: claryel-company/claryel-platform
+managed_locales:
+  - en
+  - it
+  - de
+  - fr
+  - es
+  - nl
+  - pt
+  - pl
+  - ro
+  - cs
+  - sv
+  - el
+  - da
+  - fi
+  - zh-CN
+  - hi
+  - ar
+  - id
+  - uk
+  - ru
+owns:
+  - reusable public remote-operations contracts
+  - public desired-state and change-plan schemas
+  - public risk and approval model
+  - generic Linux and macOS adapters
+  - public validation and release packaging
+  - synthetic examples
+  - public security documentation
+  - managed end-user localisation
+excludes:
+  - concrete machine identity and topology
+  - owner-specific desired and observed state
+  - credentials and recovery material
+  - personal documents and conversations
+  - telemetry logs databases and backups
+  - CLARYEL commercial support internals
+  - private orchestration and private repository history
+licensing:
+  code: Apache-2.0
+  documentation: CC-BY-SA-4.0

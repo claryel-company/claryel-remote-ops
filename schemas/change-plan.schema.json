@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://remoteops.claryel.com/schemas/change-plan.schema.json",
+  "title": "CLARYEL RemoteOps change plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "summary", "risk", "operations", "healthChecks", "rollback"],
+  "properties": {
+    "schemaVersion": {"const": "1.0"},
+    "summary": {"type": "string", "minLength": 10, "maxLength": 500},
+    "risk": {"enum": ["read-only", "low", "medium", "high", "forbidden"]},
+    "approvalRequired": {"type": "boolean"},
+    "operations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["adapter", "action", "target"],
+        "properties": {
+          "adapter": {"enum": ["linux", "macos"]},
+          "action": {"type": "string", "pattern": "^[a-z][a-z0-9-]{2,50}$"},
+          "target": {"type": "string", "minLength": 1, "maxLength": 200},
+          "parameters": {"type": "object"}
+        }
+      }
+    },
+    "healthChecks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 3, "maxLength": 200}
+    },
+    "rollback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "method"],
+      "properties": {
+        "required": {"const": true},
+        "method": {"type": "string", "minLength": 3, "maxLength": 200}
+      }
+    }
+  }
+}
