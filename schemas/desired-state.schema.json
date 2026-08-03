@@ -13,7 +13,7 @@
       "required": ["id", "platform"],
       "properties": {
         "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{2,62}$"},
-        "platform": {"enum": ["linux", "macos"]},
+        "platform": {"enum": ["windows", "linux", "macos"]},
         "profile": {"type": "string", "maxLength": 80}
       }
     },
