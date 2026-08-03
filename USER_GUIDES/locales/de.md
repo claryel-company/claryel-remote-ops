@@ -1,22 +1,37 @@
 # CLARYEL RemoteOps — einfache Anleitung
 
-RemoteOps hilft Ihnen, Ihren eigenen Linux- oder macOS-Computer zu verwalten, ohne Administrationsbefehle auswendig zu lernen.
+RemoteOps ist eine kostenlose Open-Source-Lösung, mit der Sie Ihren Windows-, Linux- oder macOS-Computer per Sprache oder Text über einen KI-Chat verwalten.
 
-## Vier Schritte
+## Was Sie tun können
 
-1. **Verbinden** Sie ein privates Konfigurations-Repository.
-2. **Beschreiben** Sie das gewünschte Ergebnis in einfachen Worten.
-3. **Genehmigen** Sie den Plan erst nach Prüfung von Auswirkung, Risiko, Sicherung und Rücksetzung.
-4. **Prüfen** Sie den Systemzustand. Bei einem fehlgeschlagenen Test muss der letzte funktionierende Zustand wiederhergestellt werden.
+- Software installieren, aktualisieren oder entfernen;
+- genehmigte Computereinstellungen konfigurieren;
+- Computer- und Systemzustand prüfen;
+- Probleme beheben und bei fehlgeschlagener Prüfung zurücksetzen.
 
-## Privat halten
+## Einfache Verwendung
 
-Speichern Sie niemals Passwörter, Token, private Schlüssel, Wiederherstellungscodes, persönliche Dateien, Prompts, Gespräche, Protokolle oder Backups im öffentlichen Repository. Gerätespezifische Konfiguration gehört in das private Repository; Geheimwerte bleiben im lokalen geschützten Speicher.
+1. Öffnen Sie den KI-Chat Ihrer Wahl.
+2. Sagen oder schreiben Sie das gewünschte Ergebnis.
+3. Lesen und genehmigen Sie den kurzen Plan, wenn er verständlich ist.
+4. RemoteOps führt eine registrierte Aktion aus und prüft das Ergebnis oder setzt zurück.
 
-## KI-Status
+## Was Sie benötigen
 
-ChatGPT wurde intern im CLARYEL-Betriebsablauf getestet. Claude, Gemini, Perplexity und Grok sind dokumentiert, aber mit RemoteOps nicht getestet. GitHub-Zugriff im kostenlosen ChatGPT-Tarif ist nicht garantiert; schreibender Zugriff wird nicht als universelle Gratis-Funktion beworben.
+- **Einen KI-Chat.** ChatGPT ist intern getestet. Andere KI-Chats haben dokumentierte Wege, sind aber nicht mit RemoteOps getestet.
+- **CLARYEL RemoteOps.** Die Sicherheitsschicht ist kostenlos und Open Source.
 
-## Sichere Regel
+<details>
+<summary>Technischer Hinweis</summary>
 
-Wenn Sie eine vorgeschlagene Änderung nicht verstehen, genehmigen Sie sie nicht. Fordern Sie eine einfachere Erklärung und einen sichtbaren Rücksetzungsweg an.
+Ein kostenloses privates GitHub-Repository kann Konfigurationsverlauf und Genehmigungen speichern. GitHub ist ein technischer Hintergrundmechanismus, nicht die Benutzeroberfläche. Speichern Sie niemals Passwörter, Schlüssel, persönliche Dateien, Gespräche, Protokolle oder Backups in Git.
+
+</details>
+
+## Plattformstatus
+
+Linux- und macOS-Abläufe sind intern getestet; stabile öffentliche Nachweise stehen noch aus. Windows-Einrichtung und Schemas werden unterstützt; der privilegierte Windows-Adapter und öffentliche Rücksetzungsnachweise werden vorbereitet.
+
+## Sicherheitsregel
+
+Genehmigen Sie keine Änderung, die Sie nicht verstehen. Fordern Sie eine einfachere Erklärung und einen sichtbaren Wiederherstellungsweg an.
