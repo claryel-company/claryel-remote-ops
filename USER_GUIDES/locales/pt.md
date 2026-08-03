@@ -1,37 +1,50 @@
-# CLARYEL RemoteOps — guia simples
+# CLARYEL RemoteOps — instalação e configuração privada
 
-O RemoteOps é uma forma gratuita e de código aberto de gerir o seu computador Windows, Linux ou macOS falando ou escrevendo numa conversa de IA.
+O RemoteOps gere o seu próprio computador Windows, Ubuntu/Linux ou macOS através do chat de IA que escolher.
 
-## O que pode fazer
+## 1. Instalar
 
-- instalar, atualizar ou remover software;
-- configurar definições aprovadas;
-- verificar o estado do computador e do sistema;
-- reparar problemas e reverter se a verificação falhar.
+- [Instalador Windows](../../installers/install-windows.ps1)
+- [Instalador macOS](../../installers/install-macos.sh)
+- [Instalador Ubuntu](../../installers/install-ubuntu.sh)
 
-## Utilização simples
+Execute o ficheiro descarregado. O RemoteOps instala-se no seu perfil de utilizador, cria uma área local privada e não desativa a segurança do sistema operativo.
 
-1. Abra a conversa de IA que preferir.
-2. Diga ou escreva o resultado pretendido.
-3. Leia e aprove o plano curto quando estiver claro.
-4. O RemoteOps aplica uma ação registada e verifica o resultado ou executa a reversão.
+## 2. Criar o seu repositório pessoal Private
 
-## O que precisa
+Instale o GitHub CLI, execute `gh auth login` e depois o comando apresentado pelo instalador:
 
-- **Uma conversa de IA.** O ChatGPT foi testado internamente. Outras conversas de IA têm caminhos documentados, mas não foram testadas com o RemoteOps.
-- **CLARYEL RemoteOps.** A camada de segurança é gratuita e de código aberto.
+```text
+remoteops connect --path O-SEU-CAMINHO-PRIVADO --create-private remoteops-meu-computador
+```
 
-<details>
-<summary>Nota técnica</summary>
+O repositório é criado na sua conta GitHub com visibilidade `Private`. O RemoteOps não o torna público nem adiciona colaboradores.
 
-Um repositório privado gratuito do GitHub pode guardar o histórico de configuração e as aprovações. O GitHub é um mecanismo técnico em segundo plano, não a interface do utilizador. Nunca guarde no Git palavras-passe, chaves, ficheiros pessoais, conversas, registos ou cópias de segurança.
+Private significa oculto do público. Ainda podem aceder o proprietário, pessoas ou aplicações autorizadas por si e o GitHub como operador do serviço. Proteja a conta com passkey ou autenticação de dois fatores.
 
-</details>
+Nunca guarde no Git palavras-passe, tokens, chaves, códigos de recuperação, ficheiros pessoais, conversas, registos brutos, bases de dados ou cópias de segurança.
 
-## Estado das plataformas
+## 3. Verificar a privacidade
 
-Os fluxos Linux e macOS foram testados internamente; ainda faltam provas públicas estáveis. A preparação e os esquemas Windows são suportados; o adaptador privilegiado Windows e as provas públicas de reversão estão em preparação.
+```text
+remoteops privacy-check --path O-SEU-CAMINHO-PRIVADO
+```
 
-## Regra segura
+Continue apenas quando aparecer `"ok": true`, `"visibility": "PRIVATE"` e nenhuma ocorrência.
 
-Não aprove uma alteração que não compreende. Peça uma explicação mais simples e um caminho de recuperação visível.
+## 4. Ligar o ChatGPT
+
+1. Abra **ChatGPT > Definições > Apps > GitHub**.
+2. Escolha **Apenas repositórios selecionados**.
+3. Selecione apenas `remoteops-meu-computador`.
+4. Reveja as permissões antes de aceitar.
+5. Reveja **Definições > Controlos de dados > Melhorar o modelo para todos**.
+6. Nunca cole segredos ou ficheiros pessoais no chat.
+
+A disponibilidade da app GitHub e a escrita variam conforme o plano e o modo do ChatGPT. Uma ligação só de leitura não pode aplicar alterações.
+
+## Limite de comunicações
+
+O RemoteOps contacta o GitHub apenas ao ligar ou sincronizar o repositório privado, o ChatGPT apenas quando decide usá-lo e as fontes de pacotes apenas para operações aprovadas. Os instaladores não adicionam publicidade nem análise externa.
+
+Guias detalhados: [repositório privado](../../docs/PRIVATE_REPOSITORY_SETUP.md), [ChatGPT](../../docs/CHATGPT_SETUP.md), [privacidade e rede](../../docs/PRIVACY_AND_NETWORK.md).
