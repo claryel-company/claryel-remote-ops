@@ -1,22 +1,37 @@
 # CLARYEL RemoteOps — simple guide
 
-RemoteOps helps you manage your own Linux or macOS computer without memorising administration commands.
+RemoteOps is a free, open-source way to manage your Windows, Linux or macOS computer by speaking or typing to an AI chat.
 
-## Four steps
+## What you can do
 
-1. **Connect** a private configuration repository.
-2. **Describe** the result you want in plain language.
-3. **Approve** the clear change plan after checking impact, risk, backup and rollback.
-4. **Verify** the health result. A failed check must restore the last known-good state.
+- install, update or remove software;
+- configure approved computer settings;
+- check computer and system health;
+- repair problems and use rollback when verification fails.
 
-## Keep private
+## Simple use
 
-Never put passwords, tokens, private keys, recovery codes, personal files, prompts, conversations, logs or backups in the public repository. Computer-specific configuration belongs in your private repository; secret values stay in local secret storage.
+1. Open the AI chat you prefer.
+2. Say or type the result you want.
+3. Read and approve the short plan when it is clear.
+4. RemoteOps runs a registered action and verifies the result or uses rollback.
 
-## AI status
+## What you need
 
-ChatGPT is internally tested with the CLARYEL operating path. Claude, Gemini, Perplexity and Grok are documented but not tested with RemoteOps. GitHub access in ChatGPT Free is not guaranteed and write-capable control is not advertised as a universal Free-plan feature.
+- **An AI chat.** ChatGPT is internally tested. Other AI chats have documented paths but are not tested with RemoteOps.
+- **CLARYEL RemoteOps.** The safety layer is free and open source.
+
+<details>
+<summary>Technical note</summary>
+
+A free private GitHub repository can keep configuration history and approvals. GitHub is a background technical mechanism, not the user interface. Never store passwords, keys, personal files, conversations, logs or backups in Git.
+
+</details>
+
+## Platform status
+
+Linux and macOS workflows are internally tested, with stable public evidence still pending. Windows onboarding and schemas are supported; the privileged Windows adapter and public rollback evidence are in preparation.
 
 ## Safe rule
 
-If you do not understand a proposed change, do not approve it. Ask for a simpler explanation and a visible rollback path.
+Do not approve a change you do not understand. Ask for a simpler explanation and a visible recovery path.
