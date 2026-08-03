@@ -1,37 +1,50 @@
-# CLARYEL RemoteOps — jednoduchý návod
+# CLARYEL RemoteOps — instalace a soukromé nastavení
 
-RemoteOps je bezplatný open-source způsob správy počítače s Windows, Linuxem nebo macOS pomocí hlasu či textu v AI chatu.
+RemoteOps spravuje váš vlastní počítač Windows, Ubuntu/Linux nebo macOS prostřednictvím vámi zvoleného AI chatu.
 
-## Co můžete dělat
+## 1. Instalace
 
-- instalovat, aktualizovat nebo odstraňovat software;
-- nastavovat schválené možnosti počítače;
-- kontrolovat stav počítače a systému;
-- opravovat problémy a vracet změny při neúspěšné kontrole.
+- [Instalátor Windows](../../installers/install-windows.ps1)
+- [Instalátor macOS](../../installers/install-macos.sh)
+- [Instalátor Ubuntu](../../installers/install-ubuntu.sh)
 
-## Jednoduché použití
+Spusťte stažený soubor. RemoteOps se nainstaluje do vašeho uživatelského profilu, vytvoří soukromý místní pracovní prostor a nevypne ochrany operačního systému.
 
-1. Otevřete oblíbený AI chat.
-2. Řekněte nebo napište požadovaný výsledek.
-3. Přečtěte a schvalte krátký plán, když je srozumitelný.
-4. RemoteOps provede registrovanou akci a ověří výsledek nebo změnu vrátí.
+## 2. Vytvořte osobní repozitář Private
 
-## Co potřebujete
+Nainstalujte GitHub CLI, spusťte `gh auth login` a potom příkaz zobrazený instalátorem:
 
-- **AI chat.** ChatGPT byl interně otestován. Ostatní AI chaty mají zdokumentované cesty, ale nebyly testovány s RemoteOps.
-- **CLARYEL RemoteOps.** Bezpečnostní vrstva je zdarma a open source.
+```text
+remoteops connect --path VASE-SOUKROMA-CESTA --create-private remoteops-muj-pocitac
+```
 
-<details>
-<summary>Technická poznámka</summary>
+Repozitář vznikne ve vašem účtu GitHub s viditelností `Private`. RemoteOps jej nezveřejní ani nepřidá spolupracovníky.
 
-Bezplatné soukromé úložiště GitHub může uchovávat historii konfigurace a schválení. GitHub je technický mechanismus na pozadí, nikoli uživatelské rozhraní. Do Gitu nikdy neukládejte hesla, klíče, osobní soubory, konverzace, protokoly ani zálohy.
+Private znamená skrytý před veřejností. Přístup stále máte vy, osoby nebo aplikace, které výslovně povolíte, a GitHub jako provozovatel služby. Chraňte účet přístupovým klíčem nebo dvoufaktorovým ověřením.
 
-</details>
+Do Git nikdy neukládejte hesla, tokeny, klíče, obnovovací kódy, osobní soubory, chaty, surové protokoly, databáze ani zálohy.
 
-## Stav platforem
+## 3. Ověřte soukromí
 
-Postupy Linux a macOS jsou interně otestovány; stabilní veřejné důkazy jsou stále nutné. Příprava a schémata Windows jsou podporovány; privilegovaný Windows adaptér a veřejné důkazy návratu se připravují.
+```text
+remoteops privacy-check --path VASE-SOUKROMA-CESTA
+```
 
-## Bezpečné pravidlo
+Pokračujte jen pokud výsledek ukáže `"ok": true`, `"visibility": "PRIVATE"` a žádné nálezy.
 
-Neschvalujte změnu, které nerozumíte. Požádejte o jednodušší vysvětlení a viditelnou cestu obnovy.
+## 4. Připojte ChatGPT
+
+1. Otevřete **ChatGPT > Nastavení > Apps > GitHub**.
+2. Zvolte **Pouze vybrané repozitáře**.
+3. Vyberte jen `remoteops-muj-pocitac`.
+4. Před schválením zkontrolujte oprávnění.
+5. Zkontrolujte **Nastavení > Ovládání dat > Zlepšovat model pro všechny**.
+6. Do chatu nikdy nevkládejte tajné údaje ani osobní soubory.
+
+Dostupnost aplikace GitHub a možnost zápisu závisí na tarifu a režimu ChatGPT. Připojení jen pro čtení nemůže použít změny.
+
+## Hranice komunikace
+
+RemoteOps kontaktuje GitHub pouze při připojení nebo synchronizaci soukromého repozitáře, ChatGPT pouze při vašem použití a zdroje balíčků pouze pro schválené operace. Instalátory nepřidávají reklamu ani cizí analytiku.
+
+Podrobné návody: [soukromý repozitář](../../docs/PRIVATE_REPOSITORY_SETUP.md), [ChatGPT](../../docs/CHATGPT_SETUP.md), [soukromí a síť](../../docs/PRIVACY_AND_NETWORK.md).
