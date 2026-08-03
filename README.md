@@ -1,131 +1,197 @@
 # CLARYEL RemoteOps
 
-> Free voice-first computer management for Windows, Linux and macOS through your preferred AI chat.
+> Free voice-first management of your own Windows, Ubuntu/Linux or macOS computer through an AI chat you choose.
 
-CLARYEL RemoteOps turns ordinary spoken or typed requests into clear, reviewable and recoverable computer changes.
+CLARYEL RemoteOps turns a spoken or typed request into a bounded plan, shows
+what will change, asks for approval when required and checks the result.
 
-You can ask an AI chat to:
+## Start in four clicks
 
-- install, update or remove software;
-- change approved computer settings;
-- check storage, memory, services, updates and system health;
-- diagnose and repair common problems;
-- verify the result and return to the last working state when a health check fails.
+1. **Choose your computer:**
+   - [Windows installer](installers/install-windows.ps1)
+   - [macOS installer](installers/install-macos.sh)
+   - [Ubuntu installer](installers/install-ubuntu.sh)
+2. **Create your personal Private repository:**
+   [`docs/PRIVATE_REPOSITORY_SETUP.md`](docs/PRIVATE_REPOSITORY_SETUP.md)
+3. **Connect ChatGPT safely:**
+   [`docs/CHATGPT_SETUP.md`](docs/CHATGPT_SETUP.md)
+4. **Verify privacy:** run `remoteops privacy-check`.
 
-You do not need to memorise terminal commands or search through operating-system menus.
+The detailed beginner guide is [`START_HERE.md`](START_HERE.md).
 
-## What you use
+## Your ownership model
 
-### 1. An AI chat
+### Your computer
 
-Speak or type what you want the computer to do. ChatGPT is the internally tested conversational path. Claude, Gemini, Perplexity and Grok have documented connection paths but remain untested with RemoteOps.
+RemoteOps is installed inside your user profile. The onboarding utility does not
+install an unrestricted remote shell and does not disable Defender, UAC,
+BitLocker, Gatekeeper, FileVault, SIP, LUKS or other operating-system security.
 
-### 2. CLARYEL RemoteOps
+### Your personal private repository
 
-The free and open-source safety layer that prepares the plan, classifies risk, asks for approval when necessary, records the change, checks the result and controls rollback.
+You create a separate repository in **your own GitHub account** and select
+**Private**. RemoteOps never makes it public, never adds collaborators and never
+changes visibility without your explicit action.
 
-That is the visible user model.
+A private repository is hidden from the public. Access is controlled by GitHub
+and is limited to you, people or applications you explicitly authorize, and
+GitHub as the service operator. It is not an honest guarantee that nobody can
+ever access it: account compromise, excessive app permissions, collaborators or
+provider incidents remain possible risks.
 
-<details>
-<summary>Small technical note</summary>
+The repository stores only reviewed non-secret configuration and change history.
+It must never contain passwords, tokens, private keys, recovery codes, personal
+files, chats, raw logs, databases or backups.
 
-A private GitHub repository can be used behind the scenes to keep a reviewable history of computer-specific configuration. GitHub is a technical storage, review and approval mechanism; it is not the RemoteOps user interface. Passwords, keys, documents, conversations, logs and backups must not be stored there.
+### Your ChatGPT account
 
-</details>
+You decide whether to connect ChatGPT, which GitHub repository it may access and
+which permissions to grant. Select **Only select repositories** and choose only
+your private RemoteOps repository. Review ChatGPT Data Controls and turn off
+**Improve the model for everyone** when appropriate for your account.
 
-## The simple path
+GitHub-app availability and write capability vary by ChatGPT plan and mode. A
+read-only connection can inspect and explain; it cannot apply changes. Any
+write-capable workflow must be separately authorized and restricted to the
+single private repository.
 
-1. Set up RemoteOps once.
-2. Open the AI chat you prefer.
-3. Say or type the result you want.
-4. Read one short plan explaining impact, risk and recovery.
-5. Approve the action when it is clear.
-6. RemoteOps applies the registered action and checks the computer.
-7. The result is accepted only after health checks pass; otherwise rollback is used.
+## Exact communication boundary
 
-```text
-voice or text request
-        ↓
-plain-language plan
-        ↓
-your approval when required
-        ↓
-controlled action
-        ↓
-health check
-        ↓
-success or rollback
+RemoteOps is local before you connect anything. It contacts external systems
+only for actions you explicitly choose:
+
+- GitHub when you create, connect, pull or push your private repository;
+- ChatGPT or another AI provider when you connect and use it;
+- package sources when you approve software installation or updates;
+- normal operating-system certificate, time and update infrastructure.
+
+The onboarding utility and installers add no advertising tracker or unrelated
+analytics service. They do not intentionally upload personal files, secrets,
+chat exports, raw logs, databases or backups.
+
+See [`docs/PRIVACY_AND_NETWORK.md`](docs/PRIVACY_AND_NETWORK.md).
+
+## Install
+
+### Windows 10 or 11
+
+Download [`install-windows.ps1`](installers/install-windows.ps1), open
+PowerShell in the download folder and run:
+
+```powershell
+Set-ExecutionPolicy -Scope Process Bypass
+.\install-windows.ps1
 ```
 
-## Current operating-system status
+### macOS
+
+Download [`install-macos.sh`](installers/install-macos.sh), open Terminal in the
+download folder and run:
+
+```bash
+chmod +x install-macos.sh
+./install-macos.sh
+```
+
+### Ubuntu
+
+Download [`install-ubuntu.sh`](installers/install-ubuntu.sh), open Terminal in
+the download folder and run:
+
+```bash
+chmod +x install-ubuntu.sh
+./install-ubuntu.sh
+```
+
+Every installer:
+
+1. downloads the public RemoteOps application into your user profile;
+2. creates the `remoteops` command;
+3. creates a private local workspace;
+4. writes a restrictive `.gitignore` and privacy instructions;
+5. checks prerequisites and installation;
+6. prints the next command for creating your personal private repository.
+
+## Create the private repository automatically
+
+Install and authenticate GitHub CLI, then run the command for your system.
+
+### Ubuntu
+
+```bash
+remoteops connect \
+  --path "$HOME/.local/share/claryel-remoteops/state" \
+  --create-private remoteops-my-computer
+```
+
+### macOS
+
+```bash
+remoteops connect \
+  --path "$HOME/Library/Application Support/CLARYEL/RemoteOps/state" \
+  --create-private remoteops-my-computer
+```
+
+### Windows PowerShell
+
+```powershell
+remoteops connect `
+  --path "$env:LOCALAPPDATA\CLARYEL\RemoteOps\state" `
+  --create-private remoteops-my-computer
+```
+
+The command uses GitHub CLI `--private`, pushes the initial non-secret files and
+then checks that GitHub reports the repository visibility as `PRIVATE`.
+
+## Verify privacy
+
+```text
+remoteops privacy-check --path YOUR-PRIVATE-WORKSPACE
+```
+
+A successful check requires:
+
+```json
+{
+  "ok": true,
+  "visibility": "PRIVATE",
+  "findings": []
+}
+```
+
+The check verifies visibility through authenticated GitHub CLI and scans tracked
+files for common secret-key, credential, database, log and backup patterns.
+
+## What you can request
+
+- install, update or remove approved software;
+- change approved computer settings;
+- check storage, memory, services, updates and system health;
+- diagnose and repair bounded problems;
+- verify the result and use the declared recovery path when a check fails.
+
+AI output remains an untrusted proposal. Arbitrary AI-generated shell or
+PowerShell commands are not the product's safety boundary.
+
+## Current support evidence
 
 | Operating system | Current public status |
 |---|---|
-| Linux | Operating workflow internally tested; public privileged adapter evidence is a release gate |
-| macOS | Operating workflow internally tested; public privileged adapter evidence is a release gate |
-| Windows | Onboarding workspace and public schemas supported; privileged execution adapter and reproducible public evidence are in preparation |
+| Linux/Ubuntu | Workflow internally tested; stable public adapter evidence pending |
+| macOS | Workflow internally tested; stable public adapter evidence pending |
+| Windows | Onboarding, installers and schemas available; privileged adapter evidence pending |
 
-The product interface targets Windows, Linux and macOS. Stable support claims require dated public installation, change, health-check and rollback evidence for the relevant operating-system version.
+## Documentation
 
-## AI status
-
-| AI chat | RemoteOps status |
-|---|---|
-| ChatGPT | Internally tested |
-| Claude | Documented, not tested with RemoteOps |
-| Gemini | Documented, not tested with RemoteOps |
-| Perplexity | Documented, not tested with RemoteOps |
-| Grok | Documented, not tested with RemoteOps |
-
-## Why it is safer than direct AI commands
-
-- AI output is treated as a proposal, not as trusted executable code.
-- Arbitrary AI-generated shell commands are not applied directly.
-- Every change uses a bounded, reviewable plan.
-- High-risk changes require explicit approval.
-- Backup and recovery requirements are declared before mutation.
-- Health checks run after the action.
-- A failed health gate triggers rollback to the last known-good state.
-- Secret values and personal data stay outside public source and configuration history.
-
-## Start here
-
-Read [`START_HERE.md`](START_HERE.md) for the shortest non-technical introduction.
-
-The current release-candidate onboarding utility can check prerequisites and create a private desired-state workspace:
-
-```bash
-python3 src/remoteops.py doctor
-python3 src/remoteops.py init --path "$HOME/.local/share/claryel-remoteops/state"
-python3 src/remoteops.py status --path "$HOME/.local/share/claryel-remoteops/state"
-```
-
-On Windows, choose a private local directory appropriate for your account, for example:
-
-```powershell
-python src/remoteops.py doctor
-python src/remoteops.py init --path "$env:LOCALAPPDATA\CLARYEL\RemoteOps\state"
-python src/remoteops.py status --path "$env:LOCALAPPDATA\CLARYEL\RemoteOps\state"
-```
-
-These commands prepare and validate the owner-controlled workspace. They do not expose a general remote shell and do not claim that every privileged operating-system action is already included in the public release candidate.
-
-## Repository map
-
-- [`START_HERE.md`](START_HERE.md) — the simplest product explanation.
-- [`ARCHITECTURE.md`](ARCHITECTURE.md) — system and trust boundaries.
-- [`SECURITY.md`](SECURITY.md) — secure defaults and disclosure process.
-- [`THREAT_MODEL.md`](THREAT_MODEL.md) — threats, mitigations and residual risks.
-- [`docs/RELEASE_PLAN.md`](docs/RELEASE_PLAN.md) — public-release gates and sequence.
-- [`docs/AI_COMPATIBILITY.md`](docs/AI_COMPATIBILITY.md) — tested and untested AI paths.
-- [`USER_GUIDES/README.md`](USER_GUIDES/README.md) — canonical English user guide.
-- [`USER_GUIDES/locales/`](USER_GUIDES/locales/) — managed end-user help in 20 languages.
-
-## Website
-
-- Project site: `https://remoteops.claryel.space`
-- Source repository: `https://github.com/claryel-company/claryel-remote-ops`
+- [`START_HERE.md`](START_HERE.md) — beginner setup.
+- [`installers/README.md`](installers/README.md) — installer instructions.
+- [`docs/PRIVATE_REPOSITORY_SETUP.md`](docs/PRIVATE_REPOSITORY_SETUP.md) — personal private GitHub repository.
+- [`docs/CHATGPT_SETUP.md`](docs/CHATGPT_SETUP.md) — repository-scoped ChatGPT setup.
+- [`docs/PRIVACY_AND_NETWORK.md`](docs/PRIVACY_AND_NETWORK.md) — exact external-service boundary.
+- [`SECURITY.md`](SECURITY.md) and [`THREAT_MODEL.md`](THREAT_MODEL.md) — security model.
+- [`USER_GUIDES/locales/`](USER_GUIDES/locales/) — managed help in 20 languages.
 
 ## Licence
 
-Code is released under the Apache License 2.0. Documentation and managed localisation are released under CC BY-SA 4.0 unless a file states otherwise.
+Code is Apache-2.0. Documentation and managed localisation are CC BY-SA 4.0
+unless a file states otherwise.
