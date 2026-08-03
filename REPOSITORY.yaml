@@ -2,14 +2,12 @@ schema_version: 3
 name: claryel-remote-ops
 github: claryel-company/claryel-remote-ops
 product_name: CLARYEL RemoteOps
-visibility: private
-target_visibility: public
-public_release_gate: repository-visibility
+visibility: public
 canonical_language: en
 status: active
-accepted: pending-first-public-release
+accepted: public-release-candidate
 level: public-product-core
-category: safe-remote-computer-operations
+category: voice-first-safe-remote-computer-operations
 role: public-remote-operations-engine
 website: https://remoteops.claryel.space
 central_repository: claryel-company/claryel-platform
@@ -35,10 +33,11 @@ managed_locales:
   - uk
   - ru
 owns:
+  - free voice-first remote-operations product boundary
   - reusable public remote-operations contracts
-  - public desired-state and change-plan schemas
+  - public desired-state and change-plan schemas for Windows Linux and macOS
   - public risk and approval model
-  - generic Linux and macOS adapters
+  - generic Windows Linux and macOS adapter contracts
   - public validation and release packaging
   - synthetic examples
   - public security documentation
@@ -51,6 +50,12 @@ excludes:
   - telemetry logs databases and backups
   - CLARYEL commercial support internals
   - private orchestration and private repository history
+status_evidence:
+  linux: internally-tested-public-adapter-evidence-pending
+  macos: internally-tested-public-adapter-evidence-pending
+  windows: onboarding-and-schema-supported-adapter-evidence-pending
+  chatgpt: internally-tested
+  other_ai_chats: documented-not-tested
 licensing:
   code: Apache-2.0
   documentation: CC-BY-SA-4.0
