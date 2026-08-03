@@ -11,7 +11,7 @@ accepted: pending-first-public-release
 level: public-product-core
 category: safe-remote-computer-operations
 role: public-remote-operations-engine
-website: https://remoteops.claryel.com
+website: https://remoteops.claryel.space
 central_repository: claryel-company/claryel-platform
 managed_locales:
   - en

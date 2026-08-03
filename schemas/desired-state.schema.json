@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://remoteops.claryel.com/schemas/desired-state.schema.json",
+  "$id": "https://remoteops.claryel.space/schemas/desired-state.schema.json",
   "title": "CLARYEL RemoteOps desired state",
   "type": "object",
   "additionalProperties": false,
