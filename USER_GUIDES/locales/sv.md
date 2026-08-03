@@ -1,37 +1,50 @@
-# CLARYEL RemoteOps — enkel guide
+# CLARYEL RemoteOps — installation och privat konfiguration
 
-RemoteOps är ett kostnadsfritt projekt med öppen källkod för att hantera en Windows-, Linux- eller macOS-dator genom tal eller text i en AI-chatt.
+RemoteOps hanterar din egen Windows-, Ubuntu/Linux- eller macOS-dator genom den AI-chatt du väljer.
 
-## Vad du kan göra
+## 1. Installera
 
-- installera, uppdatera eller ta bort program;
-- konfigurera godkända datorinställningar;
-- kontrollera datorns och systemets tillstånd;
-- reparera problem och återställa när verifieringen misslyckas.
+- [Windows-installation](../../installers/install-windows.ps1)
+- [macOS-installation](../../installers/install-macos.sh)
+- [Ubuntu-installation](../../installers/install-ubuntu.sh)
 
-## Enkel användning
+Kör den nedladdade filen. RemoteOps installeras i din användarprofil, skapar en privat lokal arbetsyta och stänger inte av operativsystemets säkerhet.
 
-1. Öppna den AI-chatt du föredrar.
-2. Säg eller skriv vilket resultat du vill ha.
-3. Läs och godkänn den korta planen när den är tydlig.
-4. RemoteOps kör en registrerad åtgärd och kontrollerar resultatet eller återställer.
+## 2. Skapa ditt personliga Private-arkiv
 
-## Vad du behöver
+Installera GitHub CLI, kör `gh auth login` och därefter kommandot som visas av installationen:
 
-- **En AI-chatt.** ChatGPT är internt testat. Andra AI-chattar har dokumenterade vägar men är inte testade med RemoteOps.
-- **CLARYEL RemoteOps.** Säkerhetslagret är gratis och har öppen källkod.
+```text
+remoteops connect --path DIN-PRIVATA-SOKVAG --create-private remoteops-min-dator
+```
 
-<details>
-<summary>Teknisk information</summary>
+Arkivet skapas i ditt GitHub-konto med synlighet `Private`. RemoteOps gör det inte offentligt och lägger inte till samarbetspartner.
 
-Ett kostnadsfritt privat GitHub-arkiv kan lagra konfigurationshistorik och godkännanden. GitHub är en teknisk bakgrundsmekanism, inte användargränssnittet. Lagra aldrig lösenord, nycklar, personliga filer, samtal, loggar eller säkerhetskopior i Git.
+Private betyder dolt för allmänheten. Du, personer eller appar som du uttryckligen godkänner och GitHub som tjänsteoperatör kan fortfarande ha åtkomst. Skydda kontot med passkey eller tvåfaktorsautentisering.
 
-</details>
+Lagra aldrig lösenord, token, nycklar, återställningskoder, personliga filer, chattar, råa loggar, databaser eller säkerhetskopior i Git.
 
-## Plattformstatus
+## 3. Kontrollera integriteten
 
-Linux- och macOS-flödena är internt testade; stabila offentliga bevis krävs fortfarande. Windows-förberedelse och scheman stöds; den privilegierade Windows-adaptern och offentliga återställningsbevis förbereds.
+```text
+remoteops privacy-check --path DIN-PRIVATA-SOKVAG
+```
 
-## Säker regel
+Fortsätt endast om resultatet visar `"ok": true`, `"visibility": "PRIVATE"` och inga fynd.
 
-Godkänn inte en ändring du inte förstår. Be om en enklare förklaring och en synlig återställningsväg.
+## 4. Anslut ChatGPT
+
+1. Öppna **ChatGPT > Inställningar > Apps > GitHub**.
+2. Välj **Endast valda arkiv**.
+3. Välj bara `remoteops-min-dator`.
+4. Granska behörigheterna före godkännande.
+5. Granska **Inställningar > Datakontroller > Förbättra modellen för alla**.
+6. Klistra aldrig in hemligheter eller personliga filer i chatten.
+
+GitHub-appens tillgänglighet och skrivrättigheter varierar med ChatGPT-plan och läge. En skrivskyddad anslutning kan inte tillämpa ändringar.
+
+## Kommunikationsgräns
+
+RemoteOps kontaktar GitHub endast när du ansluter eller synkroniserar ditt privata arkiv, ChatGPT endast när du väljer att använda det och paketkällor endast för godkända programåtgärder. Installationerna lägger inte till reklam eller extern analys.
+
+Detaljerade guider: [privat arkiv](../../docs/PRIVATE_REPOSITORY_SETUP.md), [ChatGPT](../../docs/CHATGPT_SETUP.md), [integritet och nätverk](../../docs/PRIVACY_AND_NETWORK.md).

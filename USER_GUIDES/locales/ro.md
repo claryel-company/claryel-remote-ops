@@ -1,37 +1,50 @@
-# CLARYEL RemoteOps — ghid simplu
+# CLARYEL RemoteOps — instalare și configurare privată
 
-RemoteOps este o soluție gratuită și open source pentru administrarea computerului Windows, Linux sau macOS prin voce ori text într-un chat AI.
+RemoteOps administrează propriul computer Windows, Ubuntu/Linux sau macOS prin chatul AI ales de dvs.
 
-## Ce puteți face
+## 1. Instalare
 
-- instala, actualiza sau elimina programe;
-- configura setări aprobate ale computerului;
-- verifica starea computerului și a sistemului;
-- repara probleme și reveni dacă verificarea eșuează.
+- [Instalator Windows](../../installers/install-windows.ps1)
+- [Instalator macOS](../../installers/install-macos.sh)
+- [Instalator Ubuntu](../../installers/install-ubuntu.sh)
 
-## Utilizare simplă
+Rulați fișierul descărcat. RemoteOps se instalează în profilul utilizatorului, creează un spațiu local privat și nu dezactivează securitatea sistemului de operare.
 
-1. Deschideți chatul AI preferat.
-2. Spuneți sau scrieți rezultatul dorit.
-3. Citiți și aprobați planul scurt când este clar.
-4. RemoteOps aplică o acțiune înregistrată și verifică rezultatul sau revine la starea anterioară.
+## 2. Creați depozitul personal Private
 
-## De ce aveți nevoie
+Instalați GitHub CLI, rulați `gh auth login`, apoi comanda afișată de instalator:
 
-- **Un chat AI.** ChatGPT este testat intern. Alte chat-uri AI au căi documentate, dar nu sunt testate cu RemoteOps.
-- **CLARYEL RemoteOps.** Stratul de siguranță este gratuit și open source.
+```text
+remoteops connect --path CALEA-DVS-PRIVATA --create-private remoteops-computerul-meu
+```
 
-<details>
-<summary>Notă tehnică</summary>
+Depozitul este creat în contul dvs. GitHub cu vizibilitate `Private`. RemoteOps nu îl face public și nu adaugă colaboratori.
 
-Un depozit GitHub privat și gratuit poate păstra istoricul configurației și aprobările. GitHub este un mecanism tehnic de fundal, nu interfața utilizatorului. Nu salvați niciodată în Git parole, chei, fișiere personale, conversații, jurnale sau copii de siguranță.
+Private înseamnă ascuns publicului. Totuși, acces pot avea proprietarul, persoanele sau aplicațiile autorizate explicit și GitHub ca operator al serviciului. Protejați contul cu passkey sau autentificare în doi pași.
 
-</details>
+Nu salvați niciodată în Git parole, tokenuri, chei, coduri de recuperare, fișiere personale, conversații, jurnale brute, baze de date sau copii de siguranță.
 
-## Starea platformelor
+## 3. Verificați confidențialitatea
 
-Fluxurile Linux și macOS sunt testate intern; dovezile publice stabile sunt încă necesare. Pregătirea și schemele Windows sunt acceptate; adaptorul privilegiat Windows și dovezile publice de revenire sunt în pregătire.
+```text
+remoteops privacy-check --path CALEA-DVS-PRIVATA
+```
 
-## Regula sigură
+Continuați numai când rezultatul arată `"ok": true`, `"visibility": "PRIVATE"` și nicio constatare.
 
-Nu aprobați o modificare pe care nu o înțelegeți. Cereți o explicație mai simplă și o cale vizibilă de recuperare.
+## 4. Conectați ChatGPT
+
+1. Deschideți **ChatGPT > Setări > Apps > GitHub**.
+2. Alegeți **Numai depozitele selectate**.
+3. Selectați doar `remoteops-computerul-meu`.
+4. Verificați permisiunile înainte de aprobare.
+5. Verificați **Setări > Controlul datelor > Îmbunătățește modelul pentru toți**.
+6. Nu introduceți niciodată secrete sau fișiere personale în chat.
+
+Disponibilitatea aplicației GitHub și dreptul de scriere depind de planul și modul ChatGPT. O conexiune doar pentru citire nu poate aplica modificări.
+
+## Limita comunicațiilor
+
+RemoteOps contactează GitHub numai când conectați sau sincronizați depozitul privat, ChatGPT numai când îl utilizați, iar sursele de pachete numai pentru operații aprobate. Instalatoarele nu adaugă reclame sau analiză externă.
+
+Ghiduri detaliate: [depozit privat](../../docs/PRIVATE_REPOSITORY_SETUP.md), [ChatGPT](../../docs/CHATGPT_SETUP.md), [confidențialitate și rețea](../../docs/PRIVACY_AND_NETWORK.md).

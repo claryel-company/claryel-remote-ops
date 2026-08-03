@@ -1,37 +1,50 @@
-# CLARYEL RemoteOps — eenvoudige handleiding
+# CLARYEL RemoteOps — installatie en privéconfiguratie
 
-RemoteOps is een gratis opensourceoplossing om uw Windows-, Linux- of macOS-computer te beheren door te spreken of te typen in een AI-chat.
+RemoteOps beheert uw eigen Windows-, Ubuntu/Linux- of macOS-computer via de AI-chat die u kiest.
 
-## Wat u kunt doen
+## 1. Installeren
 
-- software installeren, bijwerken of verwijderen;
-- goedgekeurde computerinstellingen configureren;
-- de computer- en systeemstatus controleren;
-- problemen herstellen en terugzetten wanneer de controle mislukt.
+- [Windows-installatieprogramma](../../installers/install-windows.ps1)
+- [macOS-installatieprogramma](../../installers/install-macos.sh)
+- [Ubuntu-installatieprogramma](../../installers/install-ubuntu.sh)
 
-## Eenvoudig gebruik
+Voer het gedownloade bestand uit. RemoteOps wordt in uw gebruikersprofiel geïnstalleerd, maakt een privé lokale werkruimte en schakelt geen beveiliging van het besturingssysteem uit.
 
-1. Open de AI-chat die u verkiest.
-2. Zeg of typ het gewenste resultaat.
-3. Lees en keur het korte plan goed wanneer het duidelijk is.
-4. RemoteOps voert een geregistreerde actie uit en controleert het resultaat of herstelt de vorige toestand.
+## 2. Uw persoonlijke Private-repository maken
 
-## Wat u nodig hebt
+Installeer GitHub CLI, voer `gh auth login` uit en daarna de opdracht van het installatieprogramma:
 
-- **Een AI-chat.** ChatGPT is intern getest. Andere AI-chats hebben gedocumenteerde routes, maar zijn niet met RemoteOps getest.
-- **CLARYEL RemoteOps.** De veiligheidslaag is gratis en open source.
+```text
+remoteops connect --path UW-PRIVE-PAD --create-private remoteops-mijn-computer
+```
 
-<details>
-<summary>Technische opmerking</summary>
+De repository wordt in uw GitHub-account gemaakt met zichtbaarheid `Private`. RemoteOps maakt deze niet openbaar en voegt geen medewerkers toe.
 
-Een gratis privé-GitHub-repository kan configuratiegeschiedenis en goedkeuringen bewaren. GitHub is een technisch achtergrondmechanisme, niet de gebruikersinterface. Bewaar nooit wachtwoorden, sleutels, persoonlijke bestanden, gesprekken, logboeken of back-ups in Git.
+Private betekent verborgen voor het publiek. U, door u gemachtigde personen of apps en GitHub als dienstverlener kunnen nog steeds toegang hebben. Beveilig het account met een passkey of tweefactorauthenticatie.
 
-</details>
+Sla nooit wachtwoorden, tokens, sleutels, herstelcodes, persoonlijke bestanden, chats, ruwe logboeken, databases of back-ups op in Git.
 
-## Platformstatus
+## 3. Privacy controleren
 
-Linux- en macOS-workflows zijn intern getest; stabiel openbaar bewijs ontbreekt nog. Windows-onboarding en schema’s worden ondersteund; de bevoorrechte Windows-adapter en openbare herstelbewijzen worden voorbereid.
+```text
+remoteops privacy-check --path UW-PRIVE-PAD
+```
 
-## Veilige regel
+Ga alleen verder wanneer `"ok": true`, `"visibility": "PRIVATE"` en geen bevindingen worden weergegeven.
 
-Keur geen wijziging goed die u niet begrijpt. Vraag om een eenvoudigere uitleg en een zichtbaar herstelpad.
+## 4. ChatGPT koppelen
+
+1. Open **ChatGPT > Instellingen > Apps > GitHub**.
+2. Kies **Alleen geselecteerde repositories**.
+3. Selecteer uitsluitend `remoteops-mijn-computer`.
+4. Controleer de rechten vóór goedkeuring.
+5. Controleer **Instellingen > Gegevensbeheer > Het model voor iedereen verbeteren**.
+6. Plak nooit geheimen of persoonlijke bestanden in de chat.
+
+Beschikbaarheid en schrijfrechten van de GitHub-app verschillen per ChatGPT-abonnement en modus. Een alleen-lezen verbinding kan geen wijzigingen toepassen.
+
+## Communicatiegrens
+
+RemoteOps benadert GitHub alleen bij koppelen of synchroniseren van uw privé-repository, ChatGPT alleen wanneer u het gebruikt en pakketbronnen alleen voor goedgekeurde softwarehandelingen. De installers voegen geen advertenties of externe analytics toe.
+
+Gedetailleerde gidsen: [privé-repository](../../docs/PRIVATE_REPOSITORY_SETUP.md), [ChatGPT](../../docs/CHATGPT_SETUP.md), [privacy en netwerk](../../docs/PRIVACY_AND_NETWORK.md).

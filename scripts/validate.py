@@ -27,6 +27,13 @@ REQUIRED = [
     "schemas/desired-state.schema.json",
     "schemas/change-plan.schema.json",
     "examples/desired-state.windows.example.json",
+    "installers/README.md",
+    "installers/install-windows.ps1",
+    "installers/install-macos.sh",
+    "installers/install-ubuntu.sh",
+    "docs/PRIVATE_REPOSITORY_SETUP.md",
+    "docs/CHATGPT_SETUP.md",
+    "docs/PRIVACY_AND_NETWORK.md",
 ]
 LOCALES = ["en", "it", "de", "fr", "es", "nl", "pt", "pl", "ro", "cs", "sv", "el", "da", "fi", "zh-CN", "hi", "ar", "id", "uk", "ru"]
 JSON_FILES = [
@@ -40,6 +47,13 @@ FORBIDDEN = [
     re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
     re.compile(r"gh[pousr]_[A-Za-z0-9_]{20,}"),
     re.compile(r"AKIA[0-9A-Z]{16}"),
+]
+INSTALLER_FORBIDDEN = [
+    re.compile(r"Set-ExecutionPolicy\s+Unrestricted", re.I),
+    re.compile(r"DisableRealtimeMonitoring", re.I),
+    re.compile(r"spctl\s+--master-disable", re.I),
+    re.compile(r"csrutil\s+disable", re.I),
+    re.compile(r"ufw\s+disable", re.I),
 ]
 
 
@@ -78,6 +92,36 @@ def main() -> int:
         error(f"unexpected adapter contract: {adapters}")
         failures += 1
 
+    installer_markers = {
+        "installers/install-windows.ps1": ["LOCALAPPDATA", "does not disable Defender", "private local configuration workspace"],
+        "installers/install-macos.sh": ["Application Support/CLARYEL/RemoteOps", "does not disable Gatekeeper", "private local configuration workspace"],
+        "installers/install-ubuntu.sh": ["claryel-remoteops", "apt-get", "private local configuration workspace"],
+    }
+    for relative, markers in installer_markers.items():
+        text = (ROOT / relative).read_text(encoding="utf-8")
+        for marker in markers:
+            if marker not in text:
+                error(f"installer {relative} missing marker: {marker}")
+                failures += 1
+        for pattern in INSTALLER_FORBIDDEN:
+            if pattern.search(text):
+                error(f"installer {relative} contains prohibited security weakening: {pattern.pattern}")
+                failures += 1
+
+    document_markers = {
+        "README.md": ["private", "GitHub", "ChatGPT", "privacy-check"],
+        "START_HERE.md": ["private", "GitHub", "ChatGPT", "Only select repositories"],
+        "docs/PRIVATE_REPOSITORY_SETUP.md": ["Private", "GitHub", "privacy-check", "two-factor authentication"],
+        "docs/CHATGPT_SETUP.md": ["ChatGPT", "GitHub", "Only select repositories", "Data Controls"],
+        "docs/PRIVACY_AND_NETWORK.md": ["GitHub", "AI provider", "external services", "absolute invisibility"],
+    }
+    for relative, markers in document_markers.items():
+        text = (ROOT / relative).read_text(encoding="utf-8")
+        for marker in markers:
+            if marker.lower() not in text.lower():
+                error(f"onboarding document {relative} missing {marker}")
+                failures += 1
+
     for path in ROOT.rglob("*"):
         if not path.is_file() or ".git" in path.parts:
             continue
@@ -91,7 +135,7 @@ def main() -> int:
                 failures += 1
     if failures:
         return 1
-    print(f"RemoteOps validation passed for Windows, Linux, macOS and {len(LOCALES)} managed locales.")
+    print(f"RemoteOps validation passed for installers, private onboarding, Windows, Linux, macOS and {len(LOCALES)} managed locales.")
     return 0
 
 

@@ -2,99 +2,133 @@
 
 > Product: CLARYEL RemoteOps
 >
-> Last scenario validation: 2026-08-03
->
 > Status: public release candidate
 >
 > Canonical language: English
 
-## The product in one sentence
+## The result
 
-CLARYEL RemoteOps is a free, open-source way to manage your own Windows, Linux or macOS computer by speaking or typing to an AI chat.
+Install RemoteOps on your own Windows, Ubuntu/Linux or macOS computer, create a
+personal **Private** repository in your GitHub account, authorize only that
+repository in ChatGPT and manage approved computer changes through ordinary
+voice or text requests.
 
-## What you can ask for
+## The three things you own and control
 
-- install, update or remove software;
+1. **Your computer.** RemoteOps is installed in your user profile and does not
+   disable operating-system security.
+2. **Your private repository.** You create it in your GitHub account. RemoteOps
+   does not make it public or add collaborators.
+3. **Your ChatGPT account.** You decide whether to connect it, which repository
+   it can access and which permissions to grant.
+
+A private repository is hidden from the public, but GitHub remains the service
+operator. Access can also be granted to people or applications you authorize.
+Use a passkey or two-factor authentication and select only this repository.
+
+## Install
+
+- Windows: [`../installers/install-windows.ps1`](../installers/install-windows.ps1)
+- macOS: [`../installers/install-macos.sh`](../installers/install-macos.sh)
+- Ubuntu: [`../installers/install-ubuntu.sh`](../installers/install-ubuntu.sh)
+
+Complete command-by-command instructions are in
+[`../START_HERE.md`](../START_HERE.md).
+
+## Create the private repository
+
+The recommended command is:
+
+```text
+remoteops connect --path YOUR-WORKSPACE --create-private remoteops-my-computer
+```
+
+It requires authenticated GitHub CLI. RemoteOps creates the repository with
+private visibility, pushes only the non-secret starter configuration and checks
+that GitHub reports `PRIVATE`.
+
+Manual creation and platform-specific commands:
+[`../docs/PRIVATE_REPOSITORY_SETUP.md`](../docs/PRIVATE_REPOSITORY_SETUP.md).
+
+## Verify privacy
+
+```text
+remoteops privacy-check --path YOUR-WORKSPACE
+```
+
+Continue only when the output shows:
+
+```json
+{
+  "ok": true,
+  "visibility": "PRIVATE",
+  "findings": []
+}
+```
+
+The check verifies repository visibility through authenticated GitHub CLI and
+scans tracked files for common secret, key, database, log and backup patterns.
+
+## Connect ChatGPT
+
+1. Open **ChatGPT > Settings > Apps**.
+2. Connect GitHub when available in your plan and experience.
+3. Choose **Only select repositories**.
+4. Select only your private `remoteops-my-computer` repository.
+5. Review requested permissions before approving.
+6. Review **Settings > Data Controls > Improve the model for everyone**.
+7. Never paste secrets or personal files into the chat.
+
+Detailed guide:
+[`../docs/CHATGPT_SETUP.md`](../docs/CHATGPT_SETUP.md).
+
+## First safe request
+
+```text
+Use only my selected private RemoteOps repository.
+Do not request, expose or store passwords, tokens, private keys, recovery codes,
+personal files, raw logs, databases or backups.
+Explain every change, risk, verification and recovery path in ordinary language.
+Do not execute arbitrary shell or PowerShell commands directly.
+Start by reading the repository instructions and explaining the current profile.
+```
+
+## External-service boundary
+
+RemoteOps is local before you connect anything. It contacts:
+
+- GitHub only when you create, connect, pull or push your private repository;
+- ChatGPT or another AI provider only when you connect and use it;
+- package sources only when you approve software installation or updates;
+- normal operating-system certificate, time and update infrastructure.
+
+The onboarding tool and installers add no advertising tracker or unrelated
+analytics service and do not intentionally upload personal files, passwords,
+keys, chats, raw logs, databases or backups.
+
+Exact wording and limitations:
+[`../docs/PRIVACY_AND_NETWORK.md`](../docs/PRIVACY_AND_NETWORK.md).
+
+## What can be requested
+
+- install, update or remove approved software;
 - change approved computer settings;
-- check storage, memory, services, updates and security state;
-- investigate common problems;
-- apply an approved repair;
-- verify the result and use rollback when the required health check fails.
+- check storage, memory, services, updates and system health;
+- diagnose bounded problems;
+- verify results and use the declared recovery path.
 
-## What you need to understand
-
-### Your AI chat is the control surface
-
-Describe the result in normal language. ChatGPT is the internally tested conversational path. Other AI chats have documented integration paths but remain untested with RemoteOps.
-
-### RemoteOps is the safety layer
-
-RemoteOps converts the request into a bounded plan. It does not give the AI an unrestricted shell.
-
-### GitHub is a background technical mechanism
-
-A private GitHub repository can keep computer-specific configuration history and approvals. It is not the primary user interface. Do not store passwords, private keys, personal documents, conversations, raw logs or backups in Git.
-
-## The simplest safe path
-
-1. **Prepare RemoteOps once.**
-   Run the prerequisite check and create the private workspace.
-2. **Open your AI chat.**
-   Speak or type the desired result.
-3. **Read the short plan.**
-   Check the intended result, affected parts, risk and recovery path.
-4. **Approve only when clear.**
-   High-risk network, identity, storage, boot, remote-access or privilege changes require explicit approval.
-5. **Receive a verified result.**
-   RemoteOps runs health checks. A failed gate must use the declared recovery method.
-
-## Prepare the workspace
-
-### Linux or macOS
-
-```bash
-python3 src/remoteops.py doctor
-python3 src/remoteops.py init --path "$HOME/.local/share/claryel-remoteops/state"
-python3 src/remoteops.py status --path "$HOME/.local/share/claryel-remoteops/state"
-```
-
-### Windows PowerShell
-
-```powershell
-python src/remoteops.py doctor
-python src/remoteops.py init --path "$env:LOCALAPPDATA\CLARYEL\RemoteOps\state"
-python src/remoteops.py status --path "$env:LOCALAPPDATA\CLARYEL\RemoteOps\state"
-```
-
-The onboarding utility prepares and validates the owner-controlled configuration workspace. It does not expose general remote command execution.
-
-## Operating-system status
+## Current status
 
 | Platform | Status |
 |---|---|
-| Linux | Internally tested workflow; stable public evidence pending |
-| macOS | Internally tested workflow; stable public evidence pending |
-| Windows | Onboarding and schemas supported; privileged adapter and public rollback evidence pending |
+| Linux/Ubuntu | Workflow internally tested; stable public adapter evidence pending |
+| macOS | Workflow internally tested; stable public adapter evidence pending |
+| Windows | Installer, onboarding and schemas available; privileged adapter evidence pending |
 
-## What stays private
-
-- computer name, address and private topology;
-- owner-specific configuration history;
-- credentials, keys and recovery codes;
-- documents, prompts and conversations;
-- logs, telemetry, databases and backups.
-
-## Common problems
-
-| Symptom | Safe action |
-|---|---|
-| The plan contains an unregistered raw shell command | Reject it and request a schema-constrained plan |
-| A secret appears in a change | Revoke the secret, remove it from history and investigate before continuing |
-| You do not understand the impact | Do not approve; request a simpler explanation |
-| Health checks fail | Stop further changes and use the declared rollback |
-| Remote access is lost | Use the verified local or out-of-band recovery path |
-| The AI chat is unavailable | Do not apply an unrecorded change; use the documented local recovery process |
+Do not treat the release candidate as an unrestricted remote shell. AI output is
+a proposal until deterministic validation and required approval pass.
 
 ## Localised help
 
-Managed translations are available in `USER_GUIDES/locales/`. English remains authoritative when a translation is incomplete or ambiguous.
+Managed translations are available in `USER_GUIDES/locales/`. English remains
+authoritative when a translation is incomplete or ambiguous.

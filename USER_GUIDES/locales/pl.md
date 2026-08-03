@@ -1,37 +1,50 @@
-# CLARYEL RemoteOps — prosta instrukcja
+# CLARYEL RemoteOps — instalacja i prywatna konfiguracja
 
-RemoteOps to bezpłatny projekt open source do zarządzania komputerem z Windows, Linux lub macOS przez rozmowę głosową albo tekstową z czatem AI.
+RemoteOps zarządza Twoim własnym komputerem z Windows, Ubuntu/Linux lub macOS przez wybrany przez Ciebie czat AI.
 
-## Co możesz zrobić
+## 1. Instalacja
 
-- instalować, aktualizować lub usuwać oprogramowanie;
-- konfigurować zatwierdzone ustawienia komputera;
-- sprawdzać stan komputera i systemu;
-- naprawiać problemy i wycofywać zmiany po nieudanej weryfikacji.
+- [Instalator Windows](../../installers/install-windows.ps1)
+- [Instalator macOS](../../installers/install-macos.sh)
+- [Instalator Ubuntu](../../installers/install-ubuntu.sh)
 
-## Proste użycie
+Uruchom pobrany plik. RemoteOps instaluje się w profilu użytkownika, tworzy prywatny lokalny obszar roboczy i nie wyłącza zabezpieczeń systemu.
 
-1. Otwórz wybrany czat AI.
-2. Powiedz lub napisz oczekiwany rezultat.
-3. Przeczytaj i zatwierdź krótki plan, gdy jest zrozumiały.
-4. RemoteOps wykonuje zarejestrowaną akcję i sprawdza wynik albo wycofuje zmianę.
+## 2. Utwórz osobiste repozytorium Private
 
-## Czego potrzebujesz
+Zainstaluj GitHub CLI, uruchom `gh auth login`, a następnie polecenie pokazane przez instalator:
 
-- **Czatu AI.** ChatGPT został przetestowany wewnętrznie. Inne czaty AI mają udokumentowane ścieżki, ale nie zostały przetestowane z RemoteOps.
-- **CLARYEL RemoteOps.** Warstwa bezpieczeństwa jest bezpłatna i otwarta.
+```text
+remoteops connect --path TWOJA-PRYWATNA-SCIEZKA --create-private remoteops-moj-komputer
+```
 
-<details>
-<summary>Informacja techniczna</summary>
+Repozytorium powstaje na Twoim koncie GitHub z widocznością `Private`. RemoteOps nie upublicznia go i nie dodaje współpracowników.
 
-Bezpłatne prywatne repozytorium GitHub może przechowywać historię konfiguracji i zatwierdzenia. GitHub jest technicznym mechanizmem działającym w tle, a nie interfejsem użytkownika. Nigdy nie zapisuj w Git haseł, kluczy, plików osobistych, rozmów, dzienników ani kopii zapasowych.
+Private oznacza ukryte przed publicznością. Nadal dostęp mają właściciel, osoby lub aplikacje wyraźnie przez niego upoważnione oraz GitHub jako operator usługi. Zabezpiecz konto kluczem dostępu lub uwierzytelnianiem dwuskładnikowym.
 
-</details>
+Nigdy nie zapisuj w Git haseł, tokenów, kluczy, kodów odzyskiwania, plików osobistych, rozmów, surowych logów, baz danych ani kopii zapasowych.
 
-## Status platform
+## 3. Sprawdź prywatność
 
-Przepływy Linux i macOS zostały przetestowane wewnętrznie; stabilne dowody publiczne są nadal wymagane. Przygotowanie i schematy Windows są obsługiwane; uprzywilejowany adapter Windows i publiczne dowody wycofania są w przygotowaniu.
+```text
+remoteops privacy-check --path TWOJA-PRYWATNA-SCIEZKA
+```
 
-## Bezpieczna zasada
+Kontynuuj tylko wtedy, gdy wynik pokazuje `"ok": true`, `"visibility": "PRIVATE"` i brak znalezisk.
 
-Nie zatwierdzaj zmiany, której nie rozumiesz. Poproś o prostsze wyjaśnienie i widoczną drogę odzyskiwania.
+## 4. Połącz ChatGPT
+
+1. Otwórz **ChatGPT > Ustawienia > Apps > GitHub**.
+2. Wybierz **Tylko wybrane repozytoria**.
+3. Wskaż wyłącznie `remoteops-moj-komputer`.
+4. Sprawdź uprawnienia przed zatwierdzeniem.
+5. Sprawdź **Ustawienia > Kontrola danych > Ulepszaj model dla wszystkich**.
+6. Nigdy nie wklejaj sekretów ani plików osobistych do czatu.
+
+Dostępność aplikacji GitHub i możliwość zapisu zależą od planu i trybu ChatGPT. Połączenie tylko do odczytu nie może stosować zmian.
+
+## Granica komunikacji
+
+RemoteOps kontaktuje GitHub tylko podczas łączenia lub synchronizacji prywatnego repozytorium, ChatGPT tylko gdy go używasz, a źródła pakietów tylko dla zatwierdzonych operacji. Instalatory nie dodają reklam ani obcej analityki.
+
+Szczegółowe przewodniki: [prywatne repozytorium](../../docs/PRIVATE_REPOSITORY_SETUP.md), [ChatGPT](../../docs/CHATGPT_SETUP.md), [prywatność i sieć](../../docs/PRIVACY_AND_NETWORK.md).

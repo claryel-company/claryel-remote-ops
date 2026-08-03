@@ -1,37 +1,50 @@
-# CLARYEL RemoteOps — helppo opas
+# CLARYEL RemoteOps — asennus ja yksityinen käyttöönotto
 
-RemoteOps on ilmainen avoimen lähdekoodin tapa hallita Windows-, Linux- tai macOS-tietokonetta puhumalla tai kirjoittamalla AI-keskusteluun.
+RemoteOps hallitsee omaa Windows-, Ubuntu/Linux- tai macOS-tietokonettasi valitsemasi AI-keskustelun kautta.
 
-## Mitä voit tehdä
+## 1. Asenna
 
-- asentaa, päivittää tai poistaa ohjelmistoja;
-- määrittää hyväksyttyjä tietokoneasetuksia;
-- tarkistaa tietokoneen ja järjestelmän tilan;
-- korjata ongelmia ja palauttaa muutoksen, jos tarkistus epäonnistuu.
+- [Windows-asennusohjelma](../../installers/install-windows.ps1)
+- [macOS-asennusohjelma](../../installers/install-macos.sh)
+- [Ubuntu-asennusohjelma](../../installers/install-ubuntu.sh)
 
-## Helppo käyttö
+Suorita ladattu tiedosto. RemoteOps asentuu käyttäjäprofiiliisi, luo yksityisen paikallisen työtilan eikä poista käyttöjärjestelmän suojausta käytöstä.
 
-1. Avaa haluamasi AI-keskustelu.
-2. Sano tai kirjoita haluttu tulos.
-3. Lue ja hyväksy lyhyt suunnitelma, kun se on selkeä.
-4. RemoteOps suorittaa rekisteröidyn toiminnon ja tarkistaa tuloksen tai palauttaa tilan.
+## 2. Luo henkilökohtainen Private-tietovarasto
 
-## Mitä tarvitset
+Asenna GitHub CLI, suorita `gh auth login` ja sen jälkeen asennusohjelman näyttämä komento:
 
-- **AI-keskustelun.** ChatGPT on testattu sisäisesti. Muilla AI-keskusteluilla on dokumentoidut polut, mutta niitä ei ole testattu RemoteOpsin kanssa.
-- **CLARYEL RemoteOpsin.** Turvakerros on ilmainen ja avoimen lähdekoodin.
+```text
+remoteops connect --path OMA-YKSITYINEN-POLKU --create-private remoteops-oma-tietokone
+```
 
-<details>
-<summary>Tekninen huomautus</summary>
+Tietovarasto luodaan GitHub-tilillesi näkyvyydellä `Private`. RemoteOps ei tee siitä julkista eikä lisää yhteistyökumppaneita.
 
-Ilmainen yksityinen GitHub-arkisto voi säilyttää määrityshistorian ja hyväksynnät. GitHub on taustalla toimiva tekninen mekanismi, ei käyttöliittymä. Älä koskaan tallenna Gitiin salasanoja, avaimia, henkilökohtaisia tiedostoja, keskusteluja, lokeja tai varmuuskopioita.
+Private tarkoittaa yleisöltä piilotettua. Sinä, erikseen hyväksymäsi henkilöt tai sovellukset sekä GitHub palvelun ylläpitäjänä voivat silti käyttää sitä. Suojaa tili passkey-avaimella tai kaksivaiheisella tunnistautumisella.
 
-</details>
+Älä koskaan tallenna Gitiin salasanoja, tokeneita, avaimia, palautuskoodeja, henkilökohtaisia tiedostoja, keskusteluja, raakalokeja, tietokantoja tai varmuuskopioita.
 
-## Alustojen tila
+## 3. Tarkista yksityisyys
 
-Linux- ja macOS-työnkulut on testattu sisäisesti; vakaa julkinen näyttö puuttuu vielä. Windows-valmistelu ja skeemat ovat tuettuja; etuoikeutettua Windows-adapteria ja julkista palautusnäyttöä valmistellaan.
+```text
+remoteops privacy-check --path OMA-YKSITYINEN-POLKU
+```
 
-## Turvallinen sääntö
+Jatka vain, jos tulos näyttää `"ok": true`, `"visibility": "PRIVATE"` eikä löydöksiä.
 
-Älä hyväksy muutosta, jota et ymmärrä. Pyydä yksinkertaisempi selitys ja näkyvä palautuspolku.
+## 4. Yhdistä ChatGPT
+
+1. Avaa **ChatGPT > Asetukset > Apps > GitHub**.
+2. Valitse **Vain valitut tietovarastot**.
+3. Valitse vain `remoteops-oma-tietokone`.
+4. Tarkista oikeudet ennen hyväksymistä.
+5. Tarkista **Asetukset > Tietojen hallinta > Paranna mallia kaikille**.
+6. Älä koskaan liitä salaisuuksia tai henkilökohtaisia tiedostoja keskusteluun.
+
+GitHub-sovelluksen saatavuus ja kirjoitusoikeus riippuvat ChatGPT-tilauksesta ja tilasta. Vain luku -yhteys ei voi tehdä muutoksia.
+
+## Viestintäraja
+
+RemoteOps ottaa yhteyden GitHubiin vain yhdistettäessä tai synkronoitaessa yksityistä tietovarastoa, ChatGPT:hen vain käyttäessäsi sitä ja pakettlähteisiin vain hyväksytyissä ohjelmisto-operaatioissa. Asennusohjelmat eivät lisää mainoksia tai ulkopuolista analytiikkaa.
+
+Yksityiskohtaiset oppaat: [yksityinen tietovarasto](../../docs/PRIVATE_REPOSITORY_SETUP.md), [ChatGPT](../../docs/CHATGPT_SETUP.md), [yksityisyys ja verkko](../../docs/PRIVACY_AND_NETWORK.md).
