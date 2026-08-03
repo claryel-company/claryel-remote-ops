@@ -77,7 +77,7 @@ ChatGPT can connect to GitHub in eligible experiences and plans, but availabilit
 
 ## Website
 
-- Project site: `https://remoteops.claryel.com`
+- Project site: `https://remoteops.claryel.space`
 - Repository: `https://github.com/claryel-company/claryel-remote-ops`
 
 ## Licence
