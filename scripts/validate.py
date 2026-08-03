@@ -93,7 +93,7 @@ def main() -> int:
         failures += 1
 
     installer_markers = {
-        "installers/install-windows.ps1": ["LOCALAPPDATA", "install-windows", "does not disable Defender", "private local configuration workspace"],
+        "installers/install-windows.ps1": ["LOCALAPPDATA", "does not disable Defender", "private local configuration workspace"],
         "installers/install-macos.sh": ["Application Support/CLARYEL/RemoteOps", "does not disable Gatekeeper", "private local configuration workspace"],
         "installers/install-ubuntu.sh": ["claryel-remoteops", "apt-get", "private local configuration workspace"],
     }
@@ -108,9 +108,16 @@ def main() -> int:
                 error(f"installer {relative} contains prohibited security weakening: {pattern.pattern}")
                 failures += 1
 
-    for relative in ("README.md", "START_HERE.md", "docs/PRIVATE_REPOSITORY_SETUP.md", "docs/CHATGPT_SETUP.md", "docs/PRIVACY_AND_NETWORK.md"):
+    document_markers = {
+        "README.md": ["private", "GitHub", "ChatGPT", "privacy-check"],
+        "START_HERE.md": ["private", "GitHub", "ChatGPT", "Only select repositories"],
+        "docs/PRIVATE_REPOSITORY_SETUP.md": ["Private", "GitHub", "privacy-check", "two-factor authentication"],
+        "docs/CHATGPT_SETUP.md": ["ChatGPT", "GitHub", "Only select repositories", "Data Controls"],
+        "docs/PRIVACY_AND_NETWORK.md": ["GitHub", "AI provider", "external services", "absolute invisibility"],
+    }
+    for relative, markers in document_markers.items():
         text = (ROOT / relative).read_text(encoding="utf-8")
-        for marker in ("private", "GitHub", "ChatGPT"):
+        for marker in markers:
             if marker.lower() not in text.lower():
                 error(f"onboarding document {relative} missing {marker}")
                 failures += 1
