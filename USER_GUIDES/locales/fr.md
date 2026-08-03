@@ -1,37 +1,50 @@
-# CLARYEL RemoteOps — guide simple
+# CLARYEL RemoteOps — installation et configuration privée
 
-RemoteOps est une solution gratuite et open source pour gérer votre ordinateur Windows, Linux ou macOS en parlant ou en écrivant dans un chat IA.
+RemoteOps gère votre propre ordinateur Windows, Ubuntu/Linux ou macOS via le chat IA que vous choisissez.
 
-## Ce que vous pouvez faire
+## 1. Installer
 
-- installer, mettre à jour ou supprimer des logiciels ;
-- configurer des réglages approuvés ;
-- vérifier l’état de l’ordinateur et du système ;
-- réparer des problèmes et revenir en arrière si la vérification échoue.
+- [Installateur Windows](../../installers/install-windows.ps1)
+- [Installateur macOS](../../installers/install-macos.sh)
+- [Installateur Ubuntu](../../installers/install-ubuntu.sh)
 
-## Utilisation simple
+Exécutez le fichier téléchargé. RemoteOps s’installe dans votre profil utilisateur, crée un espace local privé et ne désactive aucune protection du système.
 
-1. Ouvrez le chat IA de votre choix.
-2. Dites ou écrivez le résultat souhaité.
-3. Lisez et approuvez le plan court lorsqu’il est clair.
-4. RemoteOps applique une action enregistrée et vérifie le résultat ou effectue un retour arrière.
+## 2. Créer votre dépôt personnel Private
 
-## Ce qu’il faut
+Installez GitHub CLI, exécutez `gh auth login`, puis la commande affichée par l’installateur :
 
-- **Un chat IA.** ChatGPT est testé en interne. Les autres chats IA disposent de parcours documentés mais ne sont pas testés avec RemoteOps.
-- **CLARYEL RemoteOps.** La couche de sécurité est gratuite et open source.
+```text
+remoteops connect --path VOTRE-CHEMIN-PRIVE --create-private remoteops-mon-ordinateur
+```
 
-<details>
-<summary>Note technique</summary>
+Le dépôt est créé dans votre compte GitHub avec la visibilité `Private`. RemoteOps ne le rend pas public et n’ajoute aucun collaborateur.
 
-Un dépôt GitHub privé gratuit peut conserver l’historique de configuration et les approbations. GitHub est un mécanisme technique en arrière-plan, pas l’interface utilisateur. Ne stockez jamais dans Git des mots de passe, clés, fichiers personnels, conversations, journaux ou sauvegardes.
+Private signifie caché du public. Vous, les personnes ou applications que vous autorisez et GitHub comme opérateur du service pouvez toujours y accéder. Protégez le compte avec une passkey ou l’authentification à deux facteurs.
 
-</details>
+Ne stockez jamais dans Git mots de passe, jetons, clés, codes de récupération, fichiers personnels, conversations, journaux bruts, bases de données ou sauvegardes.
 
-## État des plateformes
+## 3. Vérifier la confidentialité
 
-Les parcours Linux et macOS sont testés en interne ; les preuves publiques stables restent à publier. La préparation et les schémas Windows sont pris en charge ; l’adaptateur privilégié Windows et les preuves publiques de retour arrière sont en préparation.
+```text
+remoteops privacy-check --path VOTRE-CHEMIN-PRIVE
+```
 
-## Règle de sécurité
+Continuez uniquement si le résultat affiche `"ok": true`, `"visibility": "PRIVATE"` et aucun signalement.
 
-N’approuvez pas une modification que vous ne comprenez pas. Demandez une explication plus simple et un chemin de récupération visible.
+## 4. Connecter ChatGPT
+
+1. Ouvrez **ChatGPT > Paramètres > Apps > GitHub**.
+2. Choisissez **Uniquement les dépôts sélectionnés**.
+3. Sélectionnez seulement `remoteops-mon-ordinateur`.
+4. Vérifiez les autorisations avant d’accepter.
+5. Vérifiez **Paramètres > Contrôles des données > Améliorer le modèle pour tous**.
+6. Ne collez jamais de secrets ou fichiers personnels dans le chat.
+
+La disponibilité de l’app GitHub et l’écriture dépendent du forfait et du mode ChatGPT. Une connexion en lecture seule ne peut pas appliquer de modifications.
+
+## Limite des communications
+
+RemoteOps contacte GitHub uniquement lors de la connexion ou synchronisation de votre dépôt privé, ChatGPT uniquement quand vous l’utilisez, et les sources de paquets uniquement pour les opérations logicielles approuvées. Les installateurs n’ajoutent ni publicité ni analyse étrangère.
+
+Guides détaillés : [dépôt privé](../../docs/PRIVATE_REPOSITORY_SETUP.md), [ChatGPT](../../docs/CHATGPT_SETUP.md), [confidentialité et réseau](../../docs/PRIVACY_AND_NETWORK.md).
