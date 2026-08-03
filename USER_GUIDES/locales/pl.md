@@ -1,22 +1,37 @@
 # CLARYEL RemoteOps — prosta instrukcja
 
-RemoteOps pomaga zarządzać własnym komputerem z systemem Linux lub macOS bez zapamiętywania poleceń administracyjnych.
+RemoteOps to bezpłatny projekt open source do zarządzania komputerem z Windows, Linux lub macOS przez rozmowę głosową albo tekstową z czatem AI.
 
-## Cztery kroki
+## Co możesz zrobić
 
-1. **Połącz** prywatne repozytorium konfiguracji.
-2. **Opisz** prostymi słowami oczekiwany rezultat.
-3. **Zatwierdź** plan dopiero po sprawdzeniu wpływu, ryzyka, kopii zapasowej i wycofania.
-4. **Zweryfikuj** stan systemu. Nieudany test musi przywrócić ostatni poprawny stan.
+- instalować, aktualizować lub usuwać oprogramowanie;
+- konfigurować zatwierdzone ustawienia komputera;
+- sprawdzać stan komputera i systemu;
+- naprawiać problemy i wycofywać zmiany po nieudanej weryfikacji.
 
-## Zachowaj prywatność
+## Proste użycie
 
-Nigdy nie umieszczaj w publicznym repozytorium haseł, tokenów, kluczy prywatnych, kodów odzyskiwania, plików osobistych, promptów, rozmów, dzienników ani kopii zapasowych. Konfiguracja konkretnego komputera należy do prywatnego repozytorium; sekrety pozostają w chronionym magazynie lokalnym.
+1. Otwórz wybrany czat AI.
+2. Powiedz lub napisz oczekiwany rezultat.
+3. Przeczytaj i zatwierdź krótki plan, gdy jest zrozumiały.
+4. RemoteOps wykonuje zarejestrowaną akcję i sprawdza wynik albo wycofuje zmianę.
 
-## Status AI
+## Czego potrzebujesz
 
-ChatGPT został przetestowany wewnętrznie w procesie CLARYEL. Claude, Gemini, Perplexity i Grok są opisane, ale nieprzetestowane z RemoteOps. Dostęp do GitHub w ChatGPT Free nie jest gwarantowany, a zapis nie jest reklamowany jako powszechna funkcja darmowego planu.
+- **Czatu AI.** ChatGPT został przetestowany wewnętrznie. Inne czaty AI mają udokumentowane ścieżki, ale nie zostały przetestowane z RemoteOps.
+- **CLARYEL RemoteOps.** Warstwa bezpieczeństwa jest bezpłatna i otwarta.
+
+<details>
+<summary>Informacja techniczna</summary>
+
+Bezpłatne prywatne repozytorium GitHub może przechowywać historię konfiguracji i zatwierdzenia. GitHub jest technicznym mechanizmem działającym w tle, a nie interfejsem użytkownika. Nigdy nie zapisuj w Git haseł, kluczy, plików osobistych, rozmów, dzienników ani kopii zapasowych.
+
+</details>
+
+## Status platform
+
+Przepływy Linux i macOS zostały przetestowane wewnętrznie; stabilne dowody publiczne są nadal wymagane. Przygotowanie i schematy Windows są obsługiwane; uprzywilejowany adapter Windows i publiczne dowody wycofania są w przygotowaniu.
 
 ## Bezpieczna zasada
 
-Jeżeli nie rozumiesz proponowanej zmiany, nie zatwierdzaj jej. Poproś o prostsze wyjaśnienie i widoczną ścieżkę wycofania.
+Nie zatwierdzaj zmiany, której nie rozumiesz. Poproś o prostsze wyjaśnienie i widoczną drogę odzyskiwania.
