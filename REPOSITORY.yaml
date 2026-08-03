@@ -2,7 +2,9 @@ schema_version: 3
 name: claryel-remote-ops
 github: claryel-company/claryel-remote-ops
 product_name: CLARYEL RemoteOps
-visibility: public
+visibility: private
+target_visibility: public
+public_release_gate: repository-visibility
 canonical_language: en
 status: active
 accepted: pending-first-public-release
