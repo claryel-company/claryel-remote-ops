@@ -1,22 +1,37 @@
 # CLARYEL RemoteOps — eenvoudige handleiding
 
-RemoteOps helpt u uw eigen Linux- of macOS-computer te beheren zonder beheercommando’s uit het hoofd te leren.
+RemoteOps is een gratis opensourceoplossing om uw Windows-, Linux- of macOS-computer te beheren door te spreken of te typen in een AI-chat.
 
-## Vier stappen
+## Wat u kunt doen
 
-1. **Koppel** een privéconfiguratierepository.
-2. **Beschrijf** in gewone taal welk resultaat u wilt.
-3. **Keur** het plan pas goed nadat u impact, risico, back-up en herstel hebt gecontroleerd.
-4. **Controleer** de systeemstatus. Bij een mislukte controle moet de laatste werkende toestand worden hersteld.
+- software installeren, bijwerken of verwijderen;
+- goedgekeurde computerinstellingen configureren;
+- de computer- en systeemstatus controleren;
+- problemen herstellen en terugzetten wanneer de controle mislukt.
 
-## Houd privé
+## Eenvoudig gebruik
 
-Plaats nooit wachtwoorden, tokens, privésleutels, herstelcodes, persoonlijke bestanden, prompts, gesprekken, logboeken of back-ups in de openbare repository. Computerspecifieke configuratie hoort in uw privérepository; geheime waarden blijven in beveiligde lokale opslag.
+1. Open de AI-chat die u verkiest.
+2. Zeg of typ het gewenste resultaat.
+3. Lees en keur het korte plan goed wanneer het duidelijk is.
+4. RemoteOps voert een geregistreerde actie uit en controleert het resultaat of herstelt de vorige toestand.
 
-## AI-status
+## Wat u nodig hebt
 
-ChatGPT is intern getest in het CLARYEL-proces. Claude, Gemini, Perplexity en Grok zijn gedocumenteerd maar niet getest met RemoteOps. GitHub-toegang in ChatGPT Free is niet gegarandeerd en schrijvende besturing wordt niet aangeboden als universele gratis functie.
+- **Een AI-chat.** ChatGPT is intern getest. Andere AI-chats hebben gedocumenteerde routes, maar zijn niet met RemoteOps getest.
+- **CLARYEL RemoteOps.** De veiligheidslaag is gratis en open source.
+
+<details>
+<summary>Technische opmerking</summary>
+
+Een gratis privé-GitHub-repository kan configuratiegeschiedenis en goedkeuringen bewaren. GitHub is een technisch achtergrondmechanisme, niet de gebruikersinterface. Bewaar nooit wachtwoorden, sleutels, persoonlijke bestanden, gesprekken, logboeken of back-ups in Git.
+
+</details>
+
+## Platformstatus
+
+Linux- en macOS-workflows zijn intern getest; stabiel openbaar bewijs ontbreekt nog. Windows-onboarding en schema’s worden ondersteund; de bevoorrechte Windows-adapter en openbare herstelbewijzen worden voorbereid.
 
 ## Veilige regel
 
-Begrijpt u een voorgestelde wijziging niet, keur die dan niet goed. Vraag om een eenvoudigere uitleg en een zichtbaar herstelpad.
+Keur geen wijziging goed die u niet begrijpt. Vraag om een eenvoudigere uitleg en een zichtbaar herstelpad.
