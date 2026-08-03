@@ -1,37 +1,50 @@
-# CLARYEL RemoteOps — einfache Anleitung
+# CLARYEL RemoteOps — Installation und private Einrichtung
 
-RemoteOps ist eine kostenlose Open-Source-Lösung, mit der Sie Ihren Windows-, Linux- oder macOS-Computer per Sprache oder Text über einen KI-Chat verwalten.
+RemoteOps verwaltet Ihren eigenen Windows-, Ubuntu/Linux- oder macOS-Computer über einen von Ihnen gewählten KI-Chat.
 
-## Was Sie tun können
+## 1. Installieren
 
-- Software installieren, aktualisieren oder entfernen;
-- genehmigte Computereinstellungen konfigurieren;
-- Computer- und Systemzustand prüfen;
-- Probleme beheben und bei fehlgeschlagener Prüfung zurücksetzen.
+- [Windows-Installer](../../installers/install-windows.ps1)
+- [macOS-Installer](../../installers/install-macos.sh)
+- [Ubuntu-Installer](../../installers/install-ubuntu.sh)
 
-## Einfache Verwendung
+Starten Sie die heruntergeladene Datei. RemoteOps wird in Ihrem Benutzerprofil installiert, erstellt einen privaten lokalen Arbeitsbereich und deaktiviert keine Betriebssystem-Sicherheitsfunktionen.
 
-1. Öffnen Sie den KI-Chat Ihrer Wahl.
-2. Sagen oder schreiben Sie das gewünschte Ergebnis.
-3. Lesen und genehmigen Sie den kurzen Plan, wenn er verständlich ist.
-4. RemoteOps führt eine registrierte Aktion aus und prüft das Ergebnis oder setzt zurück.
+## 2. Ihr persönliches Private-Repository erstellen
 
-## Was Sie benötigen
+Installieren Sie GitHub CLI, führen Sie `gh auth login` aus und danach den vom Installer angezeigten Befehl:
 
-- **Einen KI-Chat.** ChatGPT ist intern getestet. Andere KI-Chats haben dokumentierte Wege, sind aber nicht mit RemoteOps getestet.
-- **CLARYEL RemoteOps.** Die Sicherheitsschicht ist kostenlos und Open Source.
+```text
+remoteops connect --path IHR-PRIVATER-PFAD --create-private remoteops-mein-computer
+```
 
-<details>
-<summary>Technischer Hinweis</summary>
+Das Repository wird in Ihrem GitHub-Konto mit Sichtbarkeit `Private` erstellt. RemoteOps macht es nicht öffentlich und fügt keine Mitwirkenden hinzu.
 
-Ein kostenloses privates GitHub-Repository kann Konfigurationsverlauf und Genehmigungen speichern. GitHub ist ein technischer Hintergrundmechanismus, nicht die Benutzeroberfläche. Speichern Sie niemals Passwörter, Schlüssel, persönliche Dateien, Gespräche, Protokolle oder Backups in Git.
+Private bedeutet vor der Öffentlichkeit verborgen. Zugriff haben weiterhin Sie, von Ihnen autorisierte Personen oder Anwendungen und GitHub als Dienstbetreiber. Schützen Sie das Konto mit Passkey oder Zwei-Faktor-Authentifizierung.
 
-</details>
+Speichern Sie niemals Passwörter, Token, Schlüssel, Wiederherstellungscodes, persönliche Dateien, Chats, Rohprotokolle, Datenbanken oder Backups in Git.
 
-## Plattformstatus
+## 3. Privatsphäre prüfen
 
-Linux- und macOS-Abläufe sind intern getestet; stabile öffentliche Nachweise stehen noch aus. Windows-Einrichtung und Schemas werden unterstützt; der privilegierte Windows-Adapter und öffentliche Rücksetzungsnachweise werden vorbereitet.
+```text
+remoteops privacy-check --path IHR-PRIVATER-PFAD
+```
 
-## Sicherheitsregel
+Fahren Sie nur fort, wenn `"ok": true`, `"visibility": "PRIVATE"` und keine Funde angezeigt werden.
 
-Genehmigen Sie keine Änderung, die Sie nicht verstehen. Fordern Sie eine einfachere Erklärung und einen sichtbaren Wiederherstellungsweg an.
+## 4. ChatGPT verbinden
+
+1. Öffnen Sie **ChatGPT > Einstellungen > Apps > GitHub**.
+2. Wählen Sie **Nur ausgewählte Repositories**.
+3. Wählen Sie ausschließlich `remoteops-mein-computer`.
+4. Prüfen Sie alle Berechtigungen vor der Zustimmung.
+5. Prüfen Sie **Einstellungen > Datenkontrollen > Das Modell für alle verbessern**.
+6. Fügen Sie niemals Geheimnisse oder persönliche Dateien in den Chat ein.
+
+Verfügbarkeit und Schreibzugriff der GitHub-App hängen vom ChatGPT-Tarif und Modus ab. Eine schreibgeschützte Verbindung kann keine Änderungen anwenden.
+
+## Kommunikationsgrenze
+
+RemoteOps kontaktiert GitHub nur beim Verbinden oder Synchronisieren Ihres privaten Repositories, ChatGPT nur bei Ihrer Nutzung und Paketquellen nur für genehmigte Softwarevorgänge. Die Installer enthalten keine Werbung oder fremde Analysefunktionen.
+
+Ausführliche Anleitungen: [privates Repository](../../docs/PRIVATE_REPOSITORY_SETUP.md), [ChatGPT](../../docs/CHATGPT_SETUP.md), [Datenschutz und Netzwerk](../../docs/PRIVACY_AND_NETWORK.md).
