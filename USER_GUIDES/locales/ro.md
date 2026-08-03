@@ -1,22 +1,37 @@
 # CLARYEL RemoteOps — ghid simplu
 
-RemoteOps vă ajută să administrați propriul computer Linux sau macOS fără să memorați comenzi de administrare.
+RemoteOps este o soluție gratuită și open source pentru administrarea computerului Windows, Linux sau macOS prin voce ori text într-un chat AI.
 
-## Patru pași
+## Ce puteți face
 
-1. **Conectați** un depozit privat de configurare.
-2. **Descrieți** în cuvinte simple rezultatul dorit.
-3. **Aprobați** planul numai după verificarea impactului, riscului, copiei de siguranță și revenirii.
-4. **Verificați** starea sistemului. Dacă o verificare eșuează, trebuie restaurată ultima stare funcțională.
+- instala, actualiza sau elimina programe;
+- configura setări aprobate ale computerului;
+- verifica starea computerului și a sistemului;
+- repara probleme și reveni dacă verificarea eșuează.
 
-## Păstrați datele private
+## Utilizare simplă
 
-Nu introduceți niciodată în depozitul public parole, tokenuri, chei private, coduri de recuperare, fișiere personale, prompturi, conversații, jurnale sau copii de siguranță. Configurația specifică dispozitivului aparține depozitului privat; secretele rămân în stocarea locală protejată.
+1. Deschideți chatul AI preferat.
+2. Spuneți sau scrieți rezultatul dorit.
+3. Citiți și aprobați planul scurt când este clar.
+4. RemoteOps aplică o acțiune înregistrată și verifică rezultatul sau revine la starea anterioară.
 
-## Starea AI
+## De ce aveți nevoie
 
-ChatGPT a fost testat intern în fluxul CLARYEL. Claude, Gemini, Perplexity și Grok sunt documentate, dar nu au fost testate cu RemoteOps. Accesul GitHub în ChatGPT Free nu este garantat, iar controlul cu scriere nu este prezentat ca funcție universală gratuită.
+- **Un chat AI.** ChatGPT este testat intern. Alte chat-uri AI au căi documentate, dar nu sunt testate cu RemoteOps.
+- **CLARYEL RemoteOps.** Stratul de siguranță este gratuit și open source.
+
+<details>
+<summary>Notă tehnică</summary>
+
+Un depozit GitHub privat și gratuit poate păstra istoricul configurației și aprobările. GitHub este un mecanism tehnic de fundal, nu interfața utilizatorului. Nu salvați niciodată în Git parole, chei, fișiere personale, conversații, jurnale sau copii de siguranță.
+
+</details>
+
+## Starea platformelor
+
+Fluxurile Linux și macOS sunt testate intern; dovezile publice stabile sunt încă necesare. Pregătirea și schemele Windows sunt acceptate; adaptorul privilegiat Windows și dovezile publice de revenire sunt în pregătire.
 
 ## Regula sigură
 
-Dacă nu înțelegeți o modificare propusă, nu o aprobați. Solicitați o explicație mai simplă și o cale vizibilă de revenire.
+Nu aprobați o modificare pe care nu o înțelegeți. Cereți o explicație mai simplă și o cale vizibilă de recuperare.
