@@ -1,0 +1,35 @@
+name: Validate delegated project knowledge publication
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/validate-delegated-project-knowledge.yml"
+      - ".github/workflows/publish-project-knowledge.yml"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/validate-delegated-project-knowledge.yml"
+      - ".github/workflows/publish-project-knowledge.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Confirm delegated publication
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          test ! -e .github/workflows/publish-project-knowledge.yml
+          printf '%s\n' \
+            'repository=claryel-company/claryel-remote-ops' \
+            'visibility=public' \
+            'publication_mode=delegated' \
+            'publication_owner=claryel-company/claryel-fleet'
