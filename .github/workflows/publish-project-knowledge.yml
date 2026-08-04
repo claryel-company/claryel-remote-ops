@@ -27,7 +27,7 @@ jobs:
           case "${GITHUB_EVENT_NAME}" in push) value=push;; schedule) value=schedule;; workflow_dispatch) value=manual;; *) value=reconcile;; esac
           printf 'value=%s\n' "$value" >>"$GITHUB_OUTPUT"
       - id: knowledge
-        uses: claryel-company/claryel-boxcore/.github/actions/publish-project-knowledge@5ad36fbf81f30c6f9156010bd0fa9eb4ee1a7ae6
+        uses: claryel-company/claryel-boxcore/.github/actions/publish-project-knowledge@defb4ee59d16c984ae17affa9e9ce2451d335e36
         with:
           github-token: ${{ github.token }}
           repository: ${{ github.repository }}
