@@ -1,0 +1,24 @@
+name: Read retry project knowledge publisher
+on:
+  pull_request:
+    paths: [".github/workflows/read-knowledge-publisher-retry.yml"]
+permissions:
+  actions: read
+  contents: read
+jobs:
+  read:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Read latest main publication
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          repo="$GITHUB_REPOSITORY"
+          run="$(gh api "/repos/$repo/actions/workflows/publish-project-knowledge.yml/runs?branch=main&per_page=5" --jq '.workflow_runs | map(select(.event=="push" or .event=="schedule" or .event=="workflow_dispatch")) | .[0]')"
+          printf '%s\n' "$run" | python3 -c 'import json,sys; r=json.load(sys.stdin); print(f"run_id={r[\"id\"]} status={r.get(\"status\")} conclusion={r.get(\"conclusion\")} head_sha={r.get(\"head_sha\")}")'
+          run_id="$(printf '%s\n' "$run" | python3 -c 'import json,sys; print(json.load(sys.stdin)["id"])')"
+          gh api "/repos/$repo/actions/runs/$run_id/jobs?per_page=100" --jq '.jobs[] | "job=\(.name) status=\(.status) conclusion=\(.conclusion) id=\(.id) runner=\(.runner_name)"'
+          printf '%s\n' 'mutation=false'
