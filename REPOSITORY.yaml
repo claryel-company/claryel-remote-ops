@@ -1,16 +1,31 @@
-schema_version: 3
-name: claryel-remote-ops
-github: claryel-company/claryel-remote-ops
-product_name: CLARYEL RemoteOps
-visibility: public
-canonical_language: en
-status: active
-accepted: public-release-candidate
+schema_version: 1
+project: CLARYEL
+repository: claryel-company/claryel-remote-ops
+central_navigation: claryel-company/claryel-platform
 level: public-product-core
 category: voice-first-safe-remote-computer-operations
 role: public-remote-operations-engine
+status: active
+accepted: true
+visibility: public
+canonical_language: en
 website: https://remoteops.claryel.space
-central_repository: claryel-company/claryel-platform
+owns:
+  - reusable public RemoteOps control contracts
+  - public RemoteOps desired-state and change-plan schemas
+  - deterministic RemoteOps risk and approval policy
+  - generic public Windows Linux and macOS adapter contracts
+  - safe RemoteOps onboarding and release packaging
+  - synthetic RemoteOps examples and tests
+  - public RemoteOps security and threat documentation
+  - managed RemoteOps end-user localisation
+  - canonical English RemoteOps website facts
+does_not_own:
+  - concrete device identities and private topology
+  - owner-specific desired and observed state
+  - passwords tokens private keys and recovery material
+  - personal documents conversations telemetry logs and backups
+  - commercial support tickets sessions workforce routing and SLA
 managed_locales:
   - en
   - it
@@ -32,24 +47,6 @@ managed_locales:
   - id
   - uk
   - ru
-owns:
-  - free voice-first remote-operations product boundary
-  - reusable public remote-operations contracts
-  - public desired-state and change-plan schemas for Windows Linux and macOS
-  - public risk and approval model
-  - generic Windows Linux and macOS adapter contracts
-  - public validation and release packaging
-  - synthetic examples
-  - public security documentation
-  - managed end-user localisation
-excludes:
-  - concrete machine identity and topology
-  - owner-specific desired and observed state
-  - credentials and recovery material
-  - personal documents and conversations
-  - telemetry logs databases and backups
-  - CLARYEL commercial support internals
-  - private orchestration and private repository history
 status_evidence:
   linux: internally-tested-public-adapter-evidence-pending
   macos: internally-tested-public-adapter-evidence-pending
