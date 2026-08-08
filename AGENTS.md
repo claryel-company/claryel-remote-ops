@@ -1,8 +1,19 @@
-# Agent instructions
+<!-- CLARYEL-AGENT-ENTRY:START -->
+# CLARYEL repository entry point
 
-## Authority
+This repository is one bounded component of the CLARYEL architecture. Project-wide assumptions, architecture, decisions, terminology, repository ownership, routing, development rules and project-wide metric definitions are authoritative only in `claryel-company/claryel-platform`.
 
-Before structural work, read the authoritative CLARYEL project context in `claryel-company/claryel-platform`, then read this repository's `README.md`, `ARCHITECTURE.md`, `SECURITY.md`, `THREAT_MODEL.md`, `REPOSITORY.yaml` and `NEXT_STEPS.md`.
+Before any analysis, command or edit:
+
+1. Confirm that this repository is inside the active-only scope.
+2. Open `claryel-company/claryel-platform` first.
+3. Read `ASSUMPTIONS.md`, `ARCHITECTURE.md`, `DECISIONS.md`, related ADRs, `REPOSITORIES.md`, `TASK_ROUTING.md`, `TERMINOLOGY.md`, `DEVELOPMENT_RULES.md`, `METRICS.md`, `docs/standards/product-system-documentation.md` and `repository-catalog.yaml` there.
+4. For project-wide numerical metrics, read `docs/standards/canonical-code-metrics.md` and use the central implementation rather than a repository-local counter.
+5. Confirm that the requested capability belongs to `claryel-remote-ops` before implementation.
+6. Read this repository's `README.md`, `ARCHITECTURE.md`, `SECURITY.md`, `THREAT_MODEL.md`, `REPOSITORY.yaml`, `DOCUMENTATION.yaml` when present, `NEXT_STEPS.md` and `USER_GUIDES/README.md`.
+7. Update affected lifecycle documentation in the same governed change.
+8. Do not duplicate project-wide documentation, project-wide metric definitions or functionality owned by another repository.
+<!-- CLARYEL-AGENT-ENTRY:END -->
 
 ## Repository purpose
 
