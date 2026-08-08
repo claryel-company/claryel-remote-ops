@@ -1,5 +1,10 @@
 # CLARYEL RemoteOps
 
+<!-- CLARYEL-NAVIGATION:START -->
+> [!IMPORTANT]
+> **CLARYEL project navigation:** Before changing this repository, start with the authoritative project context in `claryel-company/claryel-platform`: `ASSUMPTIONS.md`, `ARCHITECTURE.md`, `DECISIONS.md`, `REPOSITORIES.md`, `TASK_ROUTING.md`, `DEVELOPMENT_RULES.md` and `METRICS.md`. Then read this repository's `AGENTS.md`, `REPOSITORY.yaml`, `SECURITY.md`, `THREAT_MODEL.md` and `NEXT_STEPS.md`.
+<!-- CLARYEL-NAVIGATION:END -->
+
 > Free voice-first management of your own Windows, Ubuntu/Linux or macOS computer through an AI chat you choose.
 
 CLARYEL RemoteOps turns a spoken or typed request into a bounded plan, shows
