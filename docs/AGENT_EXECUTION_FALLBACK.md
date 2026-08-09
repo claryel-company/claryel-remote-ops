@@ -1,6 +1,8 @@
 # Agent execution fallback contract
 
-RemoteOps provides reusable safety contracts for bounded computer operations. Under ADR-0055 it may also provide the policy model used by a future desktop/computer-control fallback, but it does not become an unrestricted autonomous remote desktop or shell.
+RemoteOps provides reusable safety contracts for bounded computer operations. Under ADR-0056 it may also provide the policy model used by a future desktop/computer-control fallback, but it does not become an unrestricted autonomous remote desktop or shell.
+
+ADR-0055 remains the Recovery Control Plane. A desktop fallback never creates or bypasses node recovery ownership, leases or recovery state.
 
 ## Preference boundary
 
@@ -40,4 +42,4 @@ Credentials and session secrets remain inside the private owner runtime. Public 
 
 ## CLARYEL internal integration
 
-CLARYEL Agent Fabric may use the public RemoteOps contract as one input to its internal execution-surface policy. Node Agent owns concrete local execution/capability registration and Fleet owns private device placement/desired state. No private CLARYEL topology, credentials or owner state is added to this public repository.
+CLARYEL Agent Fabric may use the public RemoteOps contract as one input to its internal execution-surface policy. Node Agent owns concrete local execution/capability registration, ADR-0055 owns recovery arbitration/state and Fleet owns private device placement/desired state. No private CLARYEL topology, credentials or owner state is added to this public repository.
