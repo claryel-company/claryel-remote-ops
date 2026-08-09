@@ -1,0 +1,45 @@
+schema_version: 1
+repository: claryel-company/claryel-remote-ops
+operability_state: agent-adapter
+human_surfaces:
+  - id: voice-chat-control
+    kind: chat
+    status: active
+    description: Owners request, inspect and approve bounded computer changes through the voice/text AI workflow.
+agent_surfaces:
+  - id: remoteops-bounded-executor
+    capabilities:
+      - computer.plan.validate
+      - computer.operation.execute
+      - computer.health.validate
+      - computer.rollback
+    mode: remoteops-adapter
+    preference: 30
+    status: active
+    mutating: true
+    authentication_boundary: Owner-private local state and bounded executor IPC; no plaintext administrative credential is placed in public repository state.
+    approval_policy: Deterministic RemoteOps risk classes require approval according to the public safety contract.
+    idempotency: required
+    health: Preflight, post-change health validation and adapter-specific checks.
+    audit: Change plan, approval, adapter operation/result, health evidence and rollback record in private owner state.
+    fallback_of: native application or operating-system API when a bounded local adapter is required
+    notes: RemoteOps exposes no general shell API.
+  - id: remoteops-desktop-interaction-contract
+    capabilities:
+      - desktop.application.interact
+    mode: desktop-ui
+    preference: 50
+    status: planned
+    mutating: true
+    authentication_boundary: Owner-controlled graphical session; application/window scope and local privilege remain bounded by private runtime policy.
+    approval_policy: Higher-risk UI actions require explicit approval and recovery evidence.
+    idempotency: required
+    health: Target graphical session/application identity and postcondition-readback capability.
+    audit: Bounded action trace with before/after evidence and stop reason.
+    fallback_of: native API, integration adapter or browser UI
+    notes: This is a reusable safety contract, not an unrestricted autonomous remote desktop.
+fallback_policy:
+  api_first: true
+  record_reason: true
+  browser_requires_acceptance: true
+  desktop_requires_acceptance: true
