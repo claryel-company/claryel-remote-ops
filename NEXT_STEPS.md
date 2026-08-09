@@ -17,7 +17,7 @@ The public release candidate contains:
 
 Linux, macOS and ChatGPT operating paths are recorded as internally tested. Windows onboarding is supported, while privileged Windows execution and reproducible public rollback evidence remain incomplete.
 
-ADR-0055 additionally uses RemoteOps as a reusable safety-contract source for lower-preference desktop/computer-control fallback. Concrete private node execution remains outside this public repository.
+ADR-0056 additionally uses RemoteOps as a reusable safety-contract source for lower-preference desktop/computer-control fallback. Concrete private node execution remains outside this public repository. ADR-0055 remains the Recovery Control Plane and is not replaced by the desktop fallback contract.
 
 ## Release gates
 
@@ -45,7 +45,7 @@ Acceptance requires synthetic evidence that a caller can provide:
 - safe stop on unexpected UI state;
 - rollback/compensation or human-takeover path.
 
-Desktop interaction must not grant shell, administrator/sudo, arbitrary filesystem or secret-store authority by implication.
+Desktop interaction must not grant shell, administrator/sudo, arbitrary filesystem or secret-store authority by implication. Recovery-required work must use ADR-0055 recovery state/leases.
 
 ## Immediate implementation order
 
